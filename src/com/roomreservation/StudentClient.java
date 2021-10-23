@@ -10,6 +10,7 @@ import com.roomreservation.service.RoomReservationImplService;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,7 +34,8 @@ public class StudentClient {
             logFilePath = "log/client/" + identifier + ".csv";
             Logger.initializeLog(logFilePath);
             System.out.println("Lookup completed");
-            RoomReservationImplService service = new RoomReservationImplService();
+            URL url = new URL("http", "127.0.0.1", centralRepository.getPort(), "/roomreservation?wsdl");
+            RoomReservationImplService service = new RoomReservationImplService(url);
             roomReservation = service.getRoomReservationImplPort();
             startStudent(bufferedReader);
         } catch (Exception e) {
