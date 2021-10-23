@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
+import java.util.concurrent.locks.ReentrantLock;
 
 import static com.roomreservation.common.ConsoleColours.ANSI_RED;
 import static com.roomreservation.common.ConsoleColours.RESET;
@@ -30,30 +31,29 @@ import static com.roomreservation.common.ConsoleColours.RESET;
 @WebService(endpointInterface = "com.roomreservation.RoomReservation")
 public class RoomReservationImpl implements RoomReservation {
 
-    private final LinkedPositionalList<Entry<Date, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> database;
+    private final LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> database;
     private final LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<Date, Integer>>>> bookingCount;
     private final String logFilePath;
     private final Campus campus;
-    public final DateFormat dateFormat;
+    private final ReentrantLock databaseLock = new ReentrantLock();
+    private final ReentrantLock bookingLock = new ReentrantLock();
 
     public RoomReservationImpl() throws IOException {
         this.database = new LinkedPositionalList<>();
         this.bookingCount = new LinkedPositionalList<>();
         this.campus = Campus.DVL;
-        this.dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         logFilePath = "log/server/" + this.campus.toString() + ".csv";
         Logger.initializeLog(logFilePath);
-        //this.generateSampleData();
+        this.generateSampleData();
     }
 
     protected RoomReservationImpl(Campus campus) throws IOException {
         this.database = new LinkedPositionalList<>();
         this.bookingCount = new LinkedPositionalList<>();
         this.campus = campus;
-        this.dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         logFilePath = "log/server/" + this.campus.toString() + ".csv";
         Logger.initializeLog(logFilePath);
-        //this.generateSampleData();
+        this.generateSampleData();
     }
 
     /**
@@ -66,7 +66,7 @@ public class RoomReservationImpl implements RoomReservation {
      */
     @Override
     public synchronized byte[] createRoom(int roomNumber, String date, ArrayList<String> listOfTimeSlots) {
-        Position<Entry<Date, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> datePosition = findDate(date);
+        Position<Entry<String, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> datePosition = findDate(date);
         boolean timeSlotCreated = false;
         boolean roomExist = false;
         if (datePosition == null){
@@ -75,7 +75,7 @@ public class RoomReservationImpl implements RoomReservation {
             for (String timeslot: listOfTimeSlots){
                 timeslots.addFirst(new Node<>(timeslot, null));
             }
-            //database.addFirst(new Node<>(date, new LinkedPositionalList<>(new Node<>(roomNumber, timeslots))));
+            database.addFirst(new Node<>(date, new LinkedPositionalList<>(new Node<>(roomNumber, timeslots))));
         } else {
             // Date exist, check if room exist
             Position<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>> roomPosition = findRoom(roomNumber, datePosition);
@@ -111,7 +111,7 @@ public class RoomReservationImpl implements RoomReservation {
         }
         responseObject.setDateTime(new Date().toString());
         responseObject.setRequestType(RequestObjectAction.CreateRoom.toString());
-        responseObject.setRequestParameters("Room number: " + roomNumber + " | Date: " + dateFormat.format(date) + " | List of Timeslots: " + listOfTimeSlots);
+        responseObject.setRequestParameters("Room number: " + roomNumber + " | Date: " + date + " | List of Timeslots: " + listOfTimeSlots);
         //Logger.log(logFilePath, rmiResponse);
         return responseObject.build().toByteArray();
     }
@@ -126,7 +126,7 @@ public class RoomReservationImpl implements RoomReservation {
      */
     @Override
     public synchronized byte[] deleteRoom(int roomNumber, String date, ArrayList<String> listOfTimeSlots) {
-        Position<Entry<Date, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> datePosition = findDate(date);
+        Position<Entry<String, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> datePosition = findDate(date);
         boolean timeslotExist = false;
         if (datePosition != null){
             // Date exist, check if room exist
@@ -154,7 +154,7 @@ public class RoomReservationImpl implements RoomReservation {
         }
         ResponseObject.Builder responseObject = ResponseObject.newBuilder();
         if (!timeslotExist){
-            responseObject.setMessage("No timeslots to delete on (" + dateFormat.format(date) + ")");
+            responseObject.setMessage("No timeslots to delete on (" + date + ")");
             responseObject.setStatus(false);
         } else {
             responseObject.setMessage("Removed timeslots from room (" + roomNumber + ")");
@@ -162,7 +162,7 @@ public class RoomReservationImpl implements RoomReservation {
         }
         responseObject.setDateTime(new Date().toString());
         responseObject.setRequestType(RequestObjectAction.CreateRoom.toString());
-        responseObject.setRequestParameters("Room number: " + roomNumber + " | Date: " + dateFormat.format(date) + " | List of Timeslots: " + listOfTimeSlots);
+        responseObject.setRequestParameters("Room number: " + roomNumber + " | Date: " + date + " | List of Timeslots: " + listOfTimeSlots);
         //Logger.log(logFilePath, rmiResponse);
         return responseObject.build().toByteArray();
     }
@@ -188,9 +188,9 @@ public class RoomReservationImpl implements RoomReservation {
             requestObject.setIdentifier(identifier);
             requestObject.setRoomNumber(roomNumber);
             requestObject.setCampusName(campus.toString());
-            requestObject.setDate(dateFormat.format(date));
+            requestObject.setDate(date);
             requestObject.setTimeslot(timeslot);
-            return udpTransfer(Campus.valueOf(campus), requestObject.build());
+            return udpTransfer(Campus.valueOf(campus), requestObject.build()).toByteArray();
         }
     }
 
@@ -205,19 +205,11 @@ public class RoomReservationImpl implements RoomReservation {
         // Build new proto request object
         RequestObject.Builder requestObject = RequestObject.newBuilder();
         requestObject.setAction(RequestObjectAction.GetAvailableTimeslots.toString());
-        requestObject.setDate(dateFormat.format(date));
+        requestObject.setDate(date);
 
-        ResponseObject dvlTimeslots = null;
-        ResponseObject kklTimeslots = null;
-        ResponseObject wstTimeslots = null;
-        try {
-            // Get response object from each campus
-            dvlTimeslots = ResponseObject.parseFrom(udpTransfer(Campus.DVL, requestObject.build()));
-            kklTimeslots = ResponseObject.parseFrom(udpTransfer(Campus.KKL, requestObject.build()));
-            wstTimeslots = ResponseObject.parseFrom(udpTransfer(Campus.WST, requestObject.build()));
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
+        ResponseObject dvlTimeslots = udpTransfer(Campus.DVL, requestObject.build());
+        ResponseObject kklTimeslots = udpTransfer(Campus.KKL, requestObject.build());
+        ResponseObject wstTimeslots = udpTransfer(Campus.WST, requestObject.build());
 
         String message = "";
         if (dvlTimeslots.getStatus())
@@ -238,7 +230,7 @@ public class RoomReservationImpl implements RoomReservation {
         responseObject.setMessage(message);
         responseObject.setDateTime(new Date().toString());
         responseObject.setRequestType(RequestObjectAction.GetAvailableTimeslots.toString());
-        responseObject.setRequestParameters("Date: " + dateFormat.format(date));
+        responseObject.setRequestParameters("Date: " + date);
         responseObject.setStatus(true);
         //Logger.log(logFilePath, rmiResponse);
         return responseObject.build().toByteArray();
@@ -262,7 +254,7 @@ public class RoomReservationImpl implements RoomReservation {
             requestObject.setAction(RequestObjectAction.CancelBooking.toString());
             requestObject.setIdentifier(identifier);
             requestObject.setBookingId(bookingId);
-            return udpTransfer(campus, requestObject.build());
+            return udpTransfer(campus, requestObject.build()).toByteArray();
         }
     }
 
@@ -277,9 +269,9 @@ public class RoomReservationImpl implements RoomReservation {
      * @return RMI response object
      * @throws IOException Exception
      */
-    public byte[] getAvailableTimeSlotOnCampus(Date date) {
+    public byte[] getAvailableTimeSlotOnCampus(String date) {
         int counter = 0;
-        for (Position<Entry<Date, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> dateNext : database.positions()) {
+        for (Position<Entry<String, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> dateNext : database.positions()) {
             for (Position<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>> roomNext : dateNext.getElement().getValue().positions()) {
                 for (Position<Entry<String, LinkedPositionalList<Entry<String, String>>>> timeslotNext : roomNext.getElement().getValue().positions()) {
                     if (timeslotNext.getElement().getValue() == null && dateNext.getElement().getKey().equals(date))
@@ -291,7 +283,7 @@ public class RoomReservationImpl implements RoomReservation {
         responseObject.setMessage(Integer.toString(counter));
         responseObject.setDateTime(new Date().toString());
         responseObject.setRequestType(RequestObjectAction.GetAvailableTimeslots.toString());
-        responseObject.setRequestParameters("Date: " + dateFormat.format(date));
+        responseObject.setRequestParameters("Date: " + date);
         responseObject.setStatus(true);
         //Logger.log(logFilePath, rmiResponse);
         return responseObject.build().toByteArray();
@@ -303,27 +295,27 @@ public class RoomReservationImpl implements RoomReservation {
      * @param date Date
      * @return RMI response object
      */
-    public byte[] getBookingCount(String identifier, String date) {
-//        int counter = 0;
-//        LocalDate tempDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//        for (Position<Entry<String, LinkedPositionalList<Entry<Date, Integer>>>> bookingIdentifier: bookingCount.positions()){
-//            if (bookingIdentifier.getElement().getKey().equals(identifier)) {
-//                for (Position<Entry<Date, Integer>> bookingDate: bookingIdentifier.getElement().getValue().positions()){
-//                    // Counter date is >= than provided date (-1 week) and Counter date is < provided date
-//                    if ((bookingDate.getElement().getKey().compareTo(Date.from(tempDate.minusWeeks(1).atStartOfDay(ZoneId.systemDefault()).toInstant())) > 0)
-//                        && (bookingDate.getElement().getKey().compareTo(Date.from(tempDate.atStartOfDay(ZoneId.systemDefault()).toInstant())) <= 0)){
-//                        // Within 1 week so it counts
-//                        counter += bookingDate.getElement().getValue();
-//                    }
-//                }
-//            }
-//        }
+    public byte[] getBookingCount(String identifier, Date date) {
+        int counter = 0;
+        LocalDate tempDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        for (Position<Entry<String, LinkedPositionalList<Entry<Date, Integer>>>> bookingIdentifier: bookingCount.positions()){
+            if (bookingIdentifier.getElement().getKey().equals(identifier)) {
+                for (Position<Entry<Date, Integer>> bookingDate: bookingIdentifier.getElement().getValue().positions()){
+                    // Counter date is >= than provided date (-1 week) and Counter date is < provided date
+                    if ((bookingDate.getElement().getKey().compareTo(Date.from(tempDate.minusWeeks(1).atStartOfDay(ZoneId.systemDefault()).toInstant())) > 0)
+                        && (bookingDate.getElement().getKey().compareTo(Date.from(tempDate.atStartOfDay(ZoneId.systemDefault()).toInstant())) <= 0)){
+                        // Within 1 week so it counts
+                        counter += bookingDate.getElement().getValue();
+                    }
+                }
+            }
+        }
         ResponseObject.Builder responseObject = ResponseObject.newBuilder();
         responseObject.setStatus(true);
         responseObject.setMessage(Integer.toString(1));
         responseObject.setDateTime(new Date().toString());
         responseObject.setRequestType(RequestObjectAction.CreateRoom.toString());
-        responseObject.setRequestParameters("Identifier: " + identifier + " | Date: " + dateFormat.format(date));
+        responseObject.setRequestParameters("Identifier: " + identifier + " | Date: " + date);
         //Logger.log(logFilePath, rmiResponse);
         return responseObject.build().toByteArray();
     }
@@ -342,7 +334,7 @@ public class RoomReservationImpl implements RoomReservation {
         boolean timeslotExist = false;
         boolean isBooked = false;
         String bookingId = "";
-        Position<Entry<Date, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> datePosition = findDate(date);
+        Position<Entry<String, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> datePosition = findDate(date);
         if (datePosition != null) {
             // Date exist, check if room exist
             Position<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>> roomPosition = findRoom(roomNumber, datePosition);
@@ -357,18 +349,11 @@ public class RoomReservationImpl implements RoomReservation {
                     // Check booking count for this week on all campuses
                     RequestObject.Builder requestBookingCount = RequestObject.newBuilder();
                     requestBookingCount.setIdentifier(identifier);
-                    requestBookingCount.setDate(dateFormat.format(date));
+                    requestBookingCount.setDate(date);
                     requestBookingCount.setAction(RequestObjectAction.GetBookingCount.toString());
-                    ResponseObject dvlBookingCount = null;
-                    ResponseObject kklBookingCount = null;
-                    ResponseObject wstBookingCount = null;
-                    try {
-                        dvlBookingCount = ResponseObject.parseFrom(udpTransfer(Campus.DVL, requestBookingCount.build()));
-                        kklBookingCount = ResponseObject.parseFrom(udpTransfer(Campus.KKL, requestBookingCount.build()));
-                        wstBookingCount = ResponseObject.parseFrom(udpTransfer(Campus.WST, requestBookingCount.build()));
-                    } catch (InvalidProtocolBufferException e) {
-                        e.printStackTrace();
-                    }
+                    ResponseObject dvlBookingCount = udpTransfer(Campus.DVL, requestBookingCount.build());
+                    ResponseObject kklBookingCount = udpTransfer(Campus.KKL, requestBookingCount.build());
+                    ResponseObject wstBookingCount = udpTransfer(Campus.WST, requestBookingCount.build());
 
                     int totalBookingCount = 0;
                     if (dvlBookingCount.getStatus())
@@ -398,7 +383,7 @@ public class RoomReservationImpl implements RoomReservation {
         }
         ResponseObject.Builder responseObject = ResponseObject.newBuilder();
         if (!timeslotExist){
-            responseObject.setMessage("Timeslot (" + timeslot + ") does not exist on (" + dateFormat.format(date) + ")");
+            responseObject.setMessage("Timeslot (" + timeslot + ") does not exist on (" + date + ")");
             responseObject.setStatus(false);
         } else if (isOverBookingCountLimit) {
             responseObject.setMessage("Unable to book room, maximum booking limit is reached");
@@ -412,7 +397,7 @@ public class RoomReservationImpl implements RoomReservation {
         }
         responseObject.setDateTime(new Date().toString());
         responseObject.setRequestType(RequestObjectAction.CreateRoom.toString());
-        responseObject.setRequestParameters("Identifier: " + identifier + " | Room Number: " + roomNumber + " | Date: " + dateFormat.format(date) + " | Timeslot: " + timeslot);
+        responseObject.setRequestParameters("Identifier: " + identifier + " | Room Number: " + roomNumber + " | Date: " + date + " | Timeslot: " + timeslot);
         //Logger.log(logFilePath, rmiResponse);
         return responseObject.build().toByteArray();
     }
@@ -427,7 +412,7 @@ public class RoomReservationImpl implements RoomReservation {
     private byte[] cancelBookingOnCampus(String identifier, String bookingId) {
         boolean bookingExist = false;
         boolean studentIdMatched = false;
-        for (Position<Entry<Date, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> datePosition : database.positions()) {
+        for (Position<Entry<String, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> datePosition : database.positions()) {
             for (Position<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>> roomPosition : datePosition.getElement().getValue().positions()) {
                 for (Position<Entry<String, LinkedPositionalList<Entry<String, String>>>> timeslotPosition : roomPosition.getElement().getValue().positions()) {
                     if (timeslotPosition.getElement().getValue() != null){
@@ -474,25 +459,47 @@ public class RoomReservationImpl implements RoomReservation {
      * @param date Date
      */
     public void increaseBookingCounter(String identifier, String date) {
-        boolean foundIdentifier = false;
-        boolean foundDate = false;
-        for (Position<Entry<String, LinkedPositionalList<Entry<Date, Integer>>>> bookingIdentifier: bookingCount.positions()){
-            if (bookingIdentifier.getElement().getKey().equals(identifier)) {
-                foundIdentifier = true;
-                for (Position<Entry<Date, Integer>> bookingDate: bookingIdentifier.getElement().getValue().positions()){
-                    if (bookingDate.getElement().getKey().equals(date)){
-                        foundDate = true;
-                        // Increase count
-                        // bookingIdentifier.getElement().getValue().set(bookingDate, new Node<>(date, bookingDate.getElement().getValue() + 1));
+        try {
+            Date tempDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+            boolean foundIdentifier = false;
+            boolean foundDate = false;
+            for (Position<Entry<String, LinkedPositionalList<Entry<Date, Integer>>>> bookingIdentifier: bookingCount.positions()){
+                if (bookingIdentifier.getElement().getKey().equals(identifier)) {
+                    foundIdentifier = true;
+                    for (Position<Entry<Date, Integer>> bookingDate: bookingIdentifier.getElement().getValue().positions()){
+                        bookingLock.lock();
+                        try {
+                            if (bookingDate.getElement().getKey().equals(tempDate)){
+                                foundDate = true;
+                                // Increase count
+                                bookingIdentifier.getElement().getValue().set(bookingDate, new Node<>(tempDate, bookingDate.getElement().getValue() + 1));
+                            }
+                        } finally {
+                            bookingLock.unlock();
+                        }
+                    }
+                    bookingLock.lock();
+                    try {
+                        if (!foundDate){
+                            bookingIdentifier.getElement().getValue().addFirst(new Node<>(tempDate, 1));
+                        }
+                    } finally {
+                        bookingLock.unlock();
                     }
                 }
-//                if (!foundDate){
-//                    bookingIdentifier.getElement().getValue().addFirst(new Node<>(date, 1));
-//                }
             }
+            bookingLock.lock();
+            try {
+                if (!foundIdentifier) {
+                    bookingCount.addFirst(new Node<>(identifier, new LinkedPositionalList<>(new Node<>(tempDate, 1))));
+                }
+            } finally {
+                bookingLock.unlock();
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-        //if (!foundIdentifier)
-        //    bookingCount.addFirst(new Node<>(identifier, new LinkedPositionalList<>(new Node<>(date, 1))));
     }
 
     /**
@@ -500,16 +507,26 @@ public class RoomReservationImpl implements RoomReservation {
      * @param identifier User ID (ie. dvls1234)
      * @param date Date
      */
-    public void decreaseBookingCounter(String identifier, Date date) {
-        for (Position<Entry<String, LinkedPositionalList<Entry<Date, Integer>>>> bookingIdentifier: bookingCount.positions()){
-            if (bookingIdentifier.getElement().getKey().equals(identifier)) {
-                for (Position<Entry<Date, Integer>> bookingDate: bookingIdentifier.getElement().getValue().positions()){
-                    if (bookingDate.getElement().getKey().equals(date)){
-                        // Decrease count
-                        bookingIdentifier.getElement().getValue().set(bookingDate, new Node<>(date, bookingDate.getElement().getValue() - 1));
+    public void decreaseBookingCounter(String identifier, String date) {
+        try {
+            Date tempDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+            for (Position<Entry<String, LinkedPositionalList<Entry<Date, Integer>>>> bookingIdentifier: bookingCount.positions()){
+                if (bookingIdentifier.getElement().getKey().equals(identifier)) {
+                    for (Position<Entry<Date, Integer>> bookingDate: bookingIdentifier.getElement().getValue().positions()){
+                        bookingLock.lock();
+                        try {
+                            if (bookingDate.getElement().getKey().equals(tempDate)){
+                                // Decrease count
+                                bookingIdentifier.getElement().getValue().set(bookingDate, new Node<>(tempDate, bookingDate.getElement().getValue() - 1));
+                            }
+                        } finally {
+                            bookingLock.unlock();
+                        }
                     }
                 }
             }
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
     }
 
@@ -519,7 +536,7 @@ public class RoomReservationImpl implements RoomReservation {
      * @param requestObject Request Object
      * @return RMI response object
      */
-    private byte[] udpTransfer(Campus campus, RequestObject requestObject){
+    private ResponseObject udpTransfer(Campus campus, RequestObject requestObject){
         DatagramSocket datagramSocket = null;
         try {
             datagramSocket = new DatagramSocket();
@@ -533,13 +550,16 @@ public class RoomReservationImpl implements RoomReservation {
                 byte[] buffer = new byte[1000];
                 DatagramPacket reply = new DatagramPacket(buffer, buffer.length);
                 datagramSocket.receive(reply);
-                return trim(reply);
+                return ResponseObject.parseFrom(trim(reply));
             } else {
                 System.out.println(ANSI_RED + "Unable to get server details from the central repository" + RESET);
                 ResponseObject.Builder responseObject = ResponseObject.newBuilder();
+                responseObject.setDateTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+                responseObject.setRequestType("");
+                responseObject.setRequestParameters("");
                 responseObject.setStatus(false);
                 responseObject.setMessage("Unable to get server details from the central repository");
-                return responseObject.build().toByteArray();
+                return responseObject.build();
             }
         }
         catch (SocketException e){
@@ -551,9 +571,12 @@ public class RoomReservationImpl implements RoomReservation {
                 datagramSocket.close();
         }
         ResponseObject.Builder responseObject = ResponseObject.newBuilder();
+        responseObject.setDateTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        responseObject.setRequestType("");
+        responseObject.setRequestParameters("");
         responseObject.setStatus(false);
         responseObject.setMessage("Unable to connect to remote server");
-        return responseObject.build().toByteArray();
+        return responseObject.build();
     }
 
     /**
@@ -572,8 +595,8 @@ public class RoomReservationImpl implements RoomReservation {
      * @param date Date
      * @return Date position in database
      */
-    private Position<Entry<Date, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> findDate(String date){
-        for (Position<Entry<Date, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> dateNext : database.positions()) {
+    private Position<Entry<String, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> findDate(String date){
+        for (Position<Entry<String, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> dateNext : database.positions()) {
             if (dateNext.getElement().getKey().equals(date))
                 return dateNext;
         }
@@ -586,7 +609,7 @@ public class RoomReservationImpl implements RoomReservation {
      * @param datePosition Date position object
      * @return Room position in database
      */
-    private Position<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>> findRoom(int roomNumber, Position<Entry<Date, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> datePosition){
+    private Position<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>> findRoom(int roomNumber, Position<Entry<String, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> datePosition){
         for (Position<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>> roomNext : datePosition.getElement().getValue().positions()) {
             if (roomNext.getElement().getKey().equals(roomNumber))
                 return roomNext;

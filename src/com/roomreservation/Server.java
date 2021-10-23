@@ -33,7 +33,7 @@ public class Server {
             }
         }
         catch (Exception e){
-            System.err.println("Usage: java Server [CAMPUS]");
+            System.err.println("Usage: java Server [CAMPUS]" + e.getMessage());
             System.exit(1);
         }
     }
@@ -56,7 +56,7 @@ public class Server {
                     System.out.println(ANSI_RED + "Unable to get available port, central repository may be down" + RESET);
                     System.exit(1);
                 }
-                if (!CentralRepositoryUtils.registerServer(campus.toString(), "udp", remotePort)){
+                if (!CentralRepositoryUtils.registerServer(campus.toString(), "udp", remotePort, CentralRepositoryUtils.SERVER_PATH, CentralRepositoryUtils.SERVER_HOST)){
                     System.out.println(ANSI_RED + "Unable to register server, central repository may be down" + RESET);
                     System.exit(1);
                 }
@@ -102,6 +102,8 @@ public class Server {
     private static void startWebServices(Campus campus) throws IOException {
         // Lookup server to see if it is already registered
         int remotePort;
+        String host = "localhost";
+        String path = "/roomreservation";
         CentralRepository centralRepository = CentralRepositoryUtils.lookupServer(campus.toString(), "web");
         if (centralRepository != null && centralRepository.getStatus()) {
             remotePort = centralRepository.getPort();
@@ -111,13 +113,14 @@ public class Server {
                 System.out.println(ANSI_RED + "Unable to get available port, central repository may be down" + RESET);
                 System.exit(1);
             }
-            if (!CentralRepositoryUtils.registerServer(campus.toString(), "web", remotePort)){
+            if (!CentralRepositoryUtils.registerServer(campus.toString(), "web", remotePort, path, host)){
                 System.out.println(ANSI_RED + "Unable to register server, central repository may be down" + RESET);
                 System.exit(1);
             }
         }
-        Endpoint endpoint = Endpoint.create(new RoomReservationImpl());
-        endpoint.publish("http://127.0.0.1:" + remotePort + "/roomreservation");
+        roomReservationImpl = new RoomReservationImpl(campus);
+        Endpoint endpoint = Endpoint.create(roomReservationImpl);
+        endpoint.publish("http://" + host + ":" + remotePort + path);
         System.out.println("Web Server ready (port: " + remotePort + ")");
     }
 
@@ -137,10 +140,10 @@ public class Server {
         ResponseObject.Builder tempObject;
 
         // Perform action
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         switch (RequestObjectAction.valueOf(requestObject.getAction())){
             case GetAvailableTimeslots:
-                response = roomReservationImpl.getAvailableTimeSlotOnCampus(dateFormat.parse(requestObject.getDate()));
+                response = roomReservationImpl.getAvailableTimeSlotOnCampus(requestObject.getDate());
                 break;
             case BookRoom:
                 response = roomReservationImpl.bookRoom(requestObject.getIdentifier(), requestObject.getCampusName(), requestObject.getRoomNumber(), requestObject.getDate(), requestObject.getTimeslot());
@@ -149,12 +152,12 @@ public class Server {
                 response = roomReservationImpl.cancelBooking(requestObject.getIdentifier(), requestObject.getBookingId());
                 break;
             case GetBookingCount:
-                response = roomReservationImpl.getBookingCount(requestObject.getIdentifier(), requestObject.getDate());
+                response = roomReservationImpl.getBookingCount(requestObject.getIdentifier(), dateFormat.parse(requestObject.getDate()));
                 break;
             case CreateRoom:
                 tempObject = ResponseObject.newBuilder();
                 tempObject.setMessage("Create Room not supported through UDP");
-                tempObject.setDateTime(roomReservationImpl.dateFormat.format(new Date()));
+                tempObject.setDateTime(dateFormat.format(new Date()));
                 tempObject.setRequestType(RequestObjectAction.CreateRoom.toString());
                 tempObject.setRequestParameters("None");
                 tempObject.setStatus(false);
@@ -164,7 +167,7 @@ public class Server {
             default:
                 tempObject = ResponseObject.newBuilder();
                 tempObject.setMessage("Delete Room not supported through UDP");
-                tempObject.setDateTime(roomReservationImpl.dateFormat.format(new Date()));
+                tempObject.setDateTime(dateFormat.format(new Date()));
                 tempObject.setRequestType(RequestObjectAction.DeleteRoom.toString());
                 tempObject.setRequestParameters("None");
                 tempObject.setStatus(false);

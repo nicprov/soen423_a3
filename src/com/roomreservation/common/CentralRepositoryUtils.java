@@ -93,12 +93,12 @@ public class CentralRepositoryUtils {
      * @param port Network port
      * @return True if server was successfully registered, false otherwise
      */
-    public static boolean registerServer(String campus, String type, int port){
+    public static boolean registerServer(String campus, String type, int port, String path, String host){
         CentralRepository.Builder centralRepositoryRequest = CentralRepository.newBuilder();
         centralRepositoryRequest.setAction(CentralRepositoryAction.Register.toString());
         centralRepositoryRequest.setPort(port);
-        centralRepositoryRequest.setPath(SERVER_PATH);
-        centralRepositoryRequest.setHost(SERVER_HOST);
+        centralRepositoryRequest.setPath(path);
+        centralRepositoryRequest.setHost(host);
         centralRepositoryRequest.setType(type);
         centralRepositoryRequest.setCampus(campus);
         CentralRepository centralRepositoryResponse = udpTransfer(centralRepositoryRequest.build());
