@@ -1,0 +1,379 @@
+Datetime,Message,RequestType,RequestParameters,Status
+Fri Oct 08 13:09:13 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 13:09:15 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 13:09:17 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 13:09:19 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: bb323047-c46f-49e9-9f04-34509f208d08,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 13:09:22 EDT 2021,Timeslot (10:30-11:00) has been booked | Booking ID: 6cf407c7-b6ef-4e94-9934-6ffaf116f456,CreateRoom,Identifier: dvls1233 | Room Number: 202 | Date: 02-01-2021 | Timeslot: 10:30-11:00,true
+Fri Oct 08 13:19:20 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 13:19:20 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 13:19:20 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 13:19:20 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: DVL:df6d3f83-575b-4458-bc34-cca7cf873b41,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 13:19:20 EDT 2021,Timeslot (10:30-11:00) has been booked | Booking ID: DVL:47a71a42-95fd-40c8-9172-cde0852e504f,CreateRoom,Identifier: dvls1233 | Room Number: 202 | Date: 02-01-2021 | Timeslot: 10:30-11:00,true
+Fri Oct 08 13:19:41 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 13:19:41 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 13:19:41 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 13:19:43 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: DVL:78bfd995-4d1a-4973-87e6-1ecab39e6d89,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 13:19:44 EDT 2021,Timeslot (10:30-11:00) has been booked | Booking ID: DVL:b9c5385e-07a6-4f00-abd5-d388b94cd9cd,CreateRoom,Identifier: dvls1233 | Room Number: 202 | Date: 02-01-2021 | Timeslot: 10:30-11:00,true
+Fri Oct 08 13:20:02 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 13:20:02 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 13:20:02 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 13:20:02 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: DVL:4f27e84c-73a4-434b-af85-231c086071f0,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 13:20:02 EDT 2021,Timeslot (10:30-11:00) has been booked | Booking ID: DVL:5b9a2a0e-29a8-41cc-820d-ca67d4b0b756,CreateRoom,Identifier: dvls1233 | Room Number: 202 | Date: 02-01-2021 | Timeslot: 10:30-11:00,true
+Fri Oct 08 13:20:07 EDT 2021,1,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 13:20:07 EDT 2021,1,CreateRoom,Identifier: dvls1233 | Date: 02-01-2021,true
+Fri Oct 08 13:22:54 EDT 2021,1,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 13:22:55 EDT 2021,1,CreateRoom,Identifier: dvls1233 | Date: 02-01-2021,true
+Fri Oct 08 13:23:53 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 13:23:53 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 13:23:53 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 13:23:53 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: DVL:b27424b9-b6b4-4edc-8ae8-1084776d5d81,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 13:23:53 EDT 2021,Timeslot (10:30-11:00) has been booked | Booking ID: DVL:c7187d2e-79d4-46bd-9736-117c91b50078,CreateRoom,Identifier: dvls1233 | Room Number: 202 | Date: 02-01-2021 | Timeslot: 10:30-11:00,true
+Fri Oct 08 13:25:25 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 13:25:25 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 13:25:25 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 13:25:26 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: DVL:72d5ccd7-15b5-4160-affd-85962ee4c275,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 13:25:27 EDT 2021,Timeslot (10:30-11:00) has been booked | Booking ID: DVL:33b8f99f-d8f6-4014-b906-1e520018a058,CreateRoom,Identifier: dvls1233 | Room Number: 202 | Date: 02-01-2021 | Timeslot: 10:30-11:00,true
+Fri Oct 08 13:25:47 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 13:25:47 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 13:25:47 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 13:25:49 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: DVL:6cddc0ec-076d-47ab-90c6-5a0d1adb1756,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 13:25:50 EDT 2021,Timeslot (10:30-11:00) has been booked | Booking ID: DVL:94582b50-72d2-46b0-bfb3-69c749a0ad6e,CreateRoom,Identifier: dvls1233 | Room Number: 202 | Date: 02-01-2021 | Timeslot: 10:30-11:00,true
+Fri Oct 08 13:27:16 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 13:27:16 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 13:27:16 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 13:27:16 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 13:27:16 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 13:27:28 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 13:27:28 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 13:27:28 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 13:27:28 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 13:27:28 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 13:27:31 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 13:27:31 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 13:27:31 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 13:27:31 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 13:27:31 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 13:27:43 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 13:27:43 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 13:27:43 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 13:27:43 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 13:27:43 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 13:28:02 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 13:28:02 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 13:28:02 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 13:28:02 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 13:28:02 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 13:28:16 EDT 2021,5,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 13:28:16 EDT 2021,DVL 5 KKL (no response from server) WST (no response from server),GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 13:30:06 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 13:30:06 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 13:30:06 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 13:30:06 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 13:30:06 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 13:31:05 EDT 2021,5,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 13:31:39 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 13:31:39 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 13:31:39 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 13:31:39 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 13:31:39 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 13:31:50 EDT 2021,1,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 13:31:50 EDT 2021,DVL 1 KKL (no response from server) WST (no response from server),GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 13:32:08 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 13:32:08 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 13:32:08 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 13:32:08 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 13:32:08 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 13:32:18 EDT 2021,1,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 13:32:18 EDT 2021,DVL 1 KKL 1 WST 1,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 13:34:11 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 13:34:12 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 13:34:12 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 13:34:12 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 13:34:12 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 13:35:39 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 13:35:39 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 13:35:39 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 13:35:39 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 13:35:39 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 13:35:53 EDT 2021,0,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 13:36:57 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 13:36:57 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 13:36:57 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 13:36:57 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 13:36:57 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 13:37:11 EDT 2021,0,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 18:11:33 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 18:11:33 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 18:11:33 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 18:11:33 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 18:11:33 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 18:13:14 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 18:13:14 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 18:13:14 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 18:13:14 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 18:13:14 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 18:13:19 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 18:13:19 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 18:13:19 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 18:13:19 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 18:13:19 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 18:14:05 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 18:14:05 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 18:14:05 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 18:14:05 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 18:14:05 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 18:15:21 EDT 2021,1,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 18:15:21 EDT 2021,DVL 1 KKL (no response from server) WST 1,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 18:20:37 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 18:20:37 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 18:20:37 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 18:20:37 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 18:20:37 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 18:25:23 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 18:25:23 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 18:25:23 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 18:25:23 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 18:25:23 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 18:28:42 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 18:28:42 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 18:28:42 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 18:28:42 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 18:28:42 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 18:28:52 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 18:28:52 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 18:28:52 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 18:28:52 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 18:28:52 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 18:30:31 EDT 2021,0,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 18:31:33 EDT 2021,0,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 18:32:04 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 18:32:04 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 18:32:04 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 18:32:04 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 18:32:04 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 18:32:15 EDT 2021,1,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 18:32:15 EDT 2021,DVL 1 KKL 1 WST 1,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 18:32:25 EDT 2021,0,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 18:32:25 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: DVL:86b1b825-7ec2-47a7-becf-c3ce45d59da0,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 18:32:36 EDT 2021,1,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 18:35:44 EDT 2021,1,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 18:37:48 EDT 2021,1,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 18:37:48 EDT 2021,Unable to book room, timeslot (9:30-10:00) has already booked,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,false
+Fri Oct 08 18:37:58 EDT 2021,Timeslot (10:00-10:30) does not exist on (01-01-2021),CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 10:00-10:30,false
+Fri Oct 08 18:38:35 EDT 2021,2,CreateRoom,Identifier: dvls1234 | Date: 02-01-2021,true
+Fri Oct 08 18:38:35 EDT 2021,Timeslot (10:30-11:00) has been booked | Booking ID: DVL:b9245ac1-4652-4904-b2e9-2a15848489af,CreateRoom,Identifier: dvls1234 | Room Number: 202 | Date: 02-01-2021 | Timeslot: 10:30-11:00,true
+Fri Oct 08 18:38:55 EDT 2021,Booking (DVL:b9245ac1-4652-4904-b2e9-2a15848489af) is reserved to another student,CreateRoom,Booking Id: DVL:b9245ac1-4652-4904-b2e9-2a15848489af,false
+Fri Oct 08 18:39:45 EDT 2021,3,CreateRoom,Identifier: dvls1234 | Date: 03-01-2021,true
+Fri Oct 08 18:39:45 EDT 2021,Unable to book room, maximum booking limit is reached,CreateRoom,Identifier: dvls1234 | Room Number: 203 | Date: 03-01-2021 | Timeslot: 11:00-11:30,false
+Fri Oct 08 19:03:35 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 19:03:35 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 19:03:35 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 19:03:35 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 19:03:35 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 19:03:50 EDT 2021,0,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 19:04:12 EDT 2021,1,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 19:04:13 EDT 2021,DVL 1 KKL 0 WST (no response from server),GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 19:16:47 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 19:16:47 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 19:16:47 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 19:16:47 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 19:16:47 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 19:17:01 EDT 2021,0,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 19:21:51 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 19:21:51 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 19:21:51 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 19:21:51 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 19:21:51 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 19:22:04 EDT 2021,0,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 19:24:20 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 19:24:20 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 19:24:20 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 19:24:20 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 19:24:20 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 19:24:32 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 19:24:33 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 19:24:33 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 19:24:33 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 19:24:33 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 19:24:49 EDT 2021,0,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 19:25:31 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 19:25:31 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 19:25:31 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 19:25:31 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 19:25:31 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 19:26:11 EDT 2021,0,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 19:26:52 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 19:26:52 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 19:26:52 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 19:26:52 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 19:26:52 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 19:27:21 EDT 2021,0,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 19:28:40 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 19:28:40 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 19:28:40 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 19:28:40 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 19:28:40 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 19:28:55 EDT 2021,0,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 19:28:55 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: DVL:9134fd45-9b92-4c5d-b77e-809a6190b899,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 19:28:59 EDT 2021,0,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 19:28:59 EDT 2021,DVL 0 KKL (no response from server) WST (no response from server),GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 19:29:11 EDT 2021,Cancelled booking (DVL:9134fd45-9b92-4c5d-b77e-809a6190b899),CreateRoom,Booking Id: DVL:9134fd45-9b92-4c5d-b77e-809a6190b899,true
+Fri Oct 08 19:31:20 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 19:31:20 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 19:31:20 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 19:31:20 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 19:31:20 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 19:31:37 EDT 2021,0,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 19:31:37 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: DVL:3ea6573f-93f3-4675-8d20-0c5a8daf3082,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 19:33:43 EDT 2021,Cancelled booking (DVL:3ea6573f-93f3-4675-8d20-0c5a8daf3082),CreateRoom,Booking Id: DVL:3ea6573f-93f3-4675-8d20-0c5a8daf3082,true
+Fri Oct 08 19:38:40 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 19:38:40 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 19:38:40 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 19:38:40 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 19:38:40 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 19:38:54 EDT 2021,0,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 19:38:54 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: DVL:9c260ec5-b311-4a73-a107-17a2ecfd7ab8,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 19:39:00 EDT 2021,Cancelled booking (DVL:9c260ec5-b311-4a73-a107-17a2ecfd7ab8),CreateRoom,Booking Id: DVL:9c260ec5-b311-4a73-a107-17a2ecfd7ab8,true
+Fri Oct 08 19:39:09 EDT 2021,0,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 19:39:09 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: DVL:919d3a2b-95c6-49c4-9fc3-3e16678518c0,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 19:39:16 EDT 2021,Cancelled booking (DVL:919d3a2b-95c6-49c4-9fc3-3e16678518c0),CreateRoom,Booking Id: DVL:919d3a2b-95c6-49c4-9fc3-3e16678518c0,true
+Fri Oct 08 19:39:27 EDT 2021,0,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 19:39:27 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: DVL:c3827abc-6685-4fee-812d-6678134970eb,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 19:39:56 EDT 2021,1,CreateRoom,Identifier: dvls1234 | Date: 02-01-2021,true
+Fri Oct 08 19:39:56 EDT 2021,Timeslot (10:30-11:00) has been booked | Booking ID: DVL:a5ccd5ac-fbfe-457b-b14e-ecba754c3a4e,CreateRoom,Identifier: dvls1234 | Room Number: 202 | Date: 02-01-2021 | Timeslot: 10:30-11:00,true
+Fri Oct 08 19:40:09 EDT 2021,Timeslot (9:30-10:00) does not exist on (01-01-2021),CreateRoom,Identifier: dvls1234 | Room Number: 203 | Date: 01-01-2021 | Timeslot: 9:30-10:00,false
+Fri Oct 08 19:40:23 EDT 2021,2,CreateRoom,Identifier: dvls1234 | Date: 03-01-2021,true
+Fri Oct 08 19:40:23 EDT 2021,Timeslot (11:00-11:30) has been booked | Booking ID: DVL:d2fa639f-4784-4525-a4fa-393e26e0d477,CreateRoom,Identifier: dvls1234 | Room Number: 203 | Date: 03-01-2021 | Timeslot: 11:00-11:30,true
+Fri Oct 08 19:40:39 EDT 2021,3,CreateRoom,Identifier: dvls1234 | Date: 04-01-2021,true
+Fri Oct 08 19:40:39 EDT 2021,Unable to book room, maximum booking limit is reached,CreateRoom,Identifier: dvls1234 | Room Number: 204 | Date: 04-01-2021 | Timeslot: 11:30-12:00,false
+Fri Oct 08 20:30:37 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:30:37 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 20:30:37 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 20:30:37 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 20:30:37 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 20:31:28 EDT 2021,Created room (206),CreateRoom,Room number: 206 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:33:47 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:33:47 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 20:33:47 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 20:33:47 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 20:33:47 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 20:34:23 EDT 2021,No timeslots to delete on (01-01-2021),CreateRoom,Room number: 206 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],false
+Fri Oct 08 20:34:56 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:34:56 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 20:34:56 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 20:34:56 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 20:34:56 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 20:35:24 EDT 2021,No timeslots to delete on (01-01-2021),CreateRoom,Room number: 206 | Date: 01-01-2021 | List of Timeslots: [10:00-10:30],false
+Fri Oct 08 20:38:18 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:38:18 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 20:38:18 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 20:38:18 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 20:38:18 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 20:38:33 EDT 2021,Room already exist with specified timeslots,CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],false
+Fri Oct 08 20:38:43 EDT 2021,Created room (206),CreateRoom,Room number: 206 | Date: 01-01-2021 | List of Timeslots: [10:00-10:30],true
+Fri Oct 08 20:39:31 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:39:31 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 20:39:31 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 20:39:31 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 20:39:31 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 20:40:24 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:40:24 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 20:40:24 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 20:40:24 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 20:40:24 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 20:42:12 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:42:12 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 20:42:12 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 20:42:12 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 20:42:12 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 20:42:44 EDT 2021,No timeslots to delete on (01-01-2021),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],false
+Fri Oct 08 20:43:58 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:43:58 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 20:43:58 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 20:43:58 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 20:43:58 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 20:44:09 EDT 2021,No timeslots to delete on (01-01-2021),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],false
+Fri Oct 08 20:44:43 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:44:43 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 20:44:43 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 20:44:43 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 20:44:43 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 20:47:48 EDT 2021,No timeslots to delete on (01-01-2021),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],false
+Fri Oct 08 20:49:14 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:49:14 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 20:49:14 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 20:49:14 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 20:49:14 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 20:49:26 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:49:26 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 20:49:26 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 20:49:26 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 20:49:26 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 20:49:37 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:49:38 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 20:49:38 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 20:49:38 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 20:49:38 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 20:51:05 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:51:06 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 20:51:06 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 20:51:06 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 20:51:06 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 20:51:27 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:51:27 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 20:51:27 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 20:51:27 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 20:51:27 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 20:51:43 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:51:43 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 20:51:43 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 20:51:43 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 20:51:43 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 20:51:57 EDT 2021,Removed timeslots from room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:52:13 EDT 2021,No timeslots to delete on (01-01-2021),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],false
+Fri Oct 08 20:52:39 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:52:39 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 20:52:39 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 20:52:39 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 20:52:39 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 20:52:53 EDT 2021,Room already exist with specified timeslots,CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],false
+Fri Oct 08 20:53:16 EDT 2021,Created room (210),CreateRoom,Room number: 210 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00, 10:00-10:30, 11:00-12:00],true
+Fri Oct 08 20:53:27 EDT 2021,Removed timeslots from room (210),CreateRoom,Room number: 210 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:53:47 EDT 2021,0,CreateRoom,Identifier: dvls1234 | Date: 01-01-2021,true
+Fri Oct 08 20:53:47 EDT 2021,Timeslot (10:00-10:30) has been booked | Booking ID: DVL:37aa0226-8f88-438f-a3e8-a428c2d68b65,CreateRoom,Identifier: dvls1234 | Room Number: 210 | Date: 01-01-2021 | Timeslot: 10:00-10:30,true
+Fri Oct 08 20:53:58 EDT 2021,Cancelled booking (DVL:37aa0226-8f88-438f-a3e8-a428c2d68b65),CreateRoom,Booking Id: DVL:37aa0226-8f88-438f-a3e8-a428c2d68b65,true
+Fri Oct 08 20:54:04 EDT 2021,3,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 20:54:04 EDT 2021,DVL 3 KKL 1 WST 1,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 20:54:53 EDT 2021,0,CreateRoom,Identifier: dvls1233 | Date: 01-01-2021,true
+Fri Oct 08 20:56:01 EDT 2021,0,CreateRoom,Identifier: dvls1233 | Date: 03-01-2021,true
+Fri Oct 08 20:56:17 EDT 2021,0,CreateRoom,Identifier: dvls1233 | Date: 04-01-2021,true
+Fri Oct 08 20:56:43 EDT 2021,0,CreateRoom,Identifier: dvls1233 | Date: 05-01-2021,true
+Fri Oct 08 20:57:05 EDT 2021,3,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 20:57:06 EDT 2021,DVL 3 KKL 0 WST (no response from server),GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 20:59:57 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 20:59:57 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 20:59:57 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 20:59:57 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 20:59:57 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 21:00:08 EDT 2021,1,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 21:00:09 EDT 2021,DVL 1 KKL 0 WST (no response from server),GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 21:32:33 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 21:32:33 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 08 21:32:33 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 08 21:32:33 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 08 21:32:33 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Fri Oct 08 21:32:50 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 10-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 08 21:32:59 EDT 2021,1,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 21:32:59 EDT 2021,DVL 1 KKL 1 WST 1,GetAvailableTimeslots,Date: 01-01-2021,true
+Wed Oct 13 13:08:11 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Wed Oct 13 13:08:12 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Wed Oct 13 13:08:12 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Wed Oct 13 13:08:12 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Wed Oct 13 13:08:12 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true
+Wed Oct 13 13:08:29 EDT 2021,1,GetAvailableTimeslots,Date: 01-01-2021,true
+Wed Oct 13 13:08:29 EDT 2021,DVL 1 KKL 1 WST 1,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 22 21:29:05 EDT 2021,Created room (201),CreateRoom,Room number: 201 | Date: 01-01-2021 | List of Timeslots: [9:30-10:00],true
+Fri Oct 22 21:29:06 EDT 2021,Created room (202),CreateRoom,Room number: 202 | Date: 02-01-2021 | List of Timeslots: [10:30-11:00],true
+Fri Oct 22 21:29:06 EDT 2021,Created room (203),CreateRoom,Room number: 203 | Date: 03-01-2021 | List of Timeslots: [11:00-11:30],true
+Fri Oct 22 21:29:06 EDT 2021,Created room (204),CreateRoom,Room number: 204 | Date: 04-01-2021 | List of Timeslots: [11:30-12:00],true
+Fri Oct 22 21:29:06 EDT 2021,Created room (205),CreateRoom,Room number: 205 | Date: 05-01-2021 | List of Timeslots: [12:00-12:30],true

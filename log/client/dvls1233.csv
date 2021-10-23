@@ -1,0 +1,10 @@
+Datetime,Message,RequestType,RequestParameters,Status
+Fri Oct 08 18:38:55 EDT 2021,Booking (DVL:b9245ac1-4652-4904-b2e9-2a15848489af) is reserved to another student,CreateRoom,Booking Id: DVL:b9245ac1-4652-4904-b2e9-2a15848489af,false
+Fri Oct 08 20:54:53 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: KKL:04bb63a5-5fd8-479b-a78d-f5d50456a88f,CreateRoom,Identifier: dvls1233 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 20:55:32 EDT 2021,Timeslot (10:00-10:30) does not exist on (02-01-2021),CreateRoom,Identifier: dvls1233 | Room Number: 202 | Date: 02-01-2021 | Timeslot: 10:00-10:30,false
+Fri Oct 08 20:56:01 EDT 2021,Timeslot (11:00-11:30) has been booked | Booking ID: KKL:ac1abf59-a25a-4e4c-b2c1-71bfc8305648,CreateRoom,Identifier: dvls1233 | Room Number: 203 | Date: 03-01-2021 | Timeslot: 11:00-11:30,true
+Fri Oct 08 20:56:17 EDT 2021,Timeslot (11:30-12:00) has been booked | Booking ID: KKL:90f7e578-63fa-4d30-9b6b-3d7a77385a13,CreateRoom,Identifier: dvls1233 | Room Number: 204 | Date: 04-01-2021 | Timeslot: 11:30-12:00,true
+Fri Oct 08 20:56:29 EDT 2021,Timeslot (12:00-12:00) does not exist on (05-01-2021),CreateRoom,Identifier: dvls1233 | Room Number: 205 | Date: 05-01-2021 | Timeslot: 12:00-12:00,false
+Fri Oct 08 20:56:43 EDT 2021,Unable to book room, maximum booking limit is reached,CreateRoom,Identifier: dvls1233 | Room Number: 205 | Date: 05-01-2021 | Timeslot: 12:00-12:30,false
+Fri Oct 08 20:57:06 EDT 2021,DVL 3 KKL 0 WST (no response from server),GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 20:57:25 EDT 2021,Unable to connect to remote server,,,false

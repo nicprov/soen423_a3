@@ -1,0 +1,51 @@
+Datetime,Message,RequestType,RequestParameters,Status
+Fri Oct 08 13:28:16 EDT 2021,DVL 5 KKL (no response from server) WST (no response from server),GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 13:31:50 EDT 2021,DVL 1 KKL (no response from server) WST (no response from server),GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 13:32:18 EDT 2021,DVL 1 KKL 1 WST 1,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 13:35:53 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: KKL:9cbbf91b-a85e-480e-be7b-ec4ac3eb4f05,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 13:37:11 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: WST:ed7f22f2-b63f-4abb-b460-33a7a334c1fa,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 13:37:19 EDT 2021,Cancelled booking (WST:ed7f22f2-b63f-4abb-b460-33a7a334c1fa),CreateRoom,Booking Id: WST:ed7f22f2-b63f-4abb-b460-33a7a334c1fa,true
+Fri Oct 08 18:15:21 EDT 2021,DVL 1 KKL (no response from server) WST 1,GetAvailableTimeslots,Date: 01-01-2021,true
+null,Unable to get server details from the central repository,null,null,false
+null,Unable to connect to remote server,null,null,false
+null,Unable to get server details from the central repository,null,null,false
+null,Unable to connect to remote server,null,null,false
+null,Unable to connect to remote server,null,null,false
+null,Unable to connect to remote server,null,null,false
+Fri Oct 08 18:32:15 EDT 2021,DVL 1 KKL 1 WST 1,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 18:32:25 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: DVL:86b1b825-7ec2-47a7-becf-c3ce45d59da0,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 18:32:36 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: KKL:ce612356-db1f-4523-8c8b-c35bff35ebd0,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 18:34:42 EDT 2021,Cancelled booking (KKL:ce612356-db1f-4523-8c8b-c35bff35ebd0),CreateRoom,Booking Id: KKL:ce612356-db1f-4523-8c8b-c35bff35ebd0,true
+Fri Oct 08 18:35:44 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: WST:0706f9cd-f0f7-43eb-af05-a50760bfb9ce,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 18:35:50 EDT 2021,Cancelled booking (WST:0706f9cd-f0f7-43eb-af05-a50760bfb9ce),CreateRoom,Booking Id: WST:0706f9cd-f0f7-43eb-af05-a50760bfb9ce,true
+null,Unable to connect to remote server,null,null,false
+null,Unable to connect to remote server,null,null,false
+Fri Oct 08 18:37:48 EDT 2021,Unable to book room, timeslot (9:30-10:00) has already booked,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,false
+Fri Oct 08 18:37:58 EDT 2021,Timeslot (10:00-10:30) does not exist on (01-01-2021),CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 10:00-10:30,false
+Fri Oct 08 18:38:35 EDT 2021,Timeslot (10:30-11:00) has been booked | Booking ID: DVL:b9245ac1-4652-4904-b2e9-2a15848489af,CreateRoom,Identifier: dvls1234 | Room Number: 202 | Date: 02-01-2021 | Timeslot: 10:30-11:00,true
+Fri Oct 08 18:39:45 EDT 2021,Unable to book room, maximum booking limit is reached,CreateRoom,Identifier: dvls1234 | Room Number: 203 | Date: 03-01-2021 | Timeslot: 11:00-11:30,false
+Fri Oct 08 19:03:50 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: KKL:29cbc465-d91f-4c61-ab0d-165145f6a826,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 19:04:13 EDT 2021,DVL 1 KKL 0 WST (no response from server),GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 19:28:55 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: DVL:9134fd45-9b92-4c5d-b77e-809a6190b899,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 19:28:59 EDT 2021,DVL 0 KKL (no response from server) WST (no response from server),GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 19:29:11 EDT 2021,Cancelled booking (DVL:9134fd45-9b92-4c5d-b77e-809a6190b899),CreateRoom,Booking Id: DVL:9134fd45-9b92-4c5d-b77e-809a6190b899,true
+Fri Oct 08 19:31:37 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: DVL:3ea6573f-93f3-4675-8d20-0c5a8daf3082,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 19:38:54 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: DVL:9c260ec5-b311-4a73-a107-17a2ecfd7ab8,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 19:39:00 EDT 2021,Cancelled booking (DVL:9c260ec5-b311-4a73-a107-17a2ecfd7ab8),CreateRoom,Booking Id: DVL:9c260ec5-b311-4a73-a107-17a2ecfd7ab8,true
+Fri Oct 08 19:39:09 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: DVL:919d3a2b-95c6-49c4-9fc3-3e16678518c0,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 19:39:16 EDT 2021,Cancelled booking (DVL:919d3a2b-95c6-49c4-9fc3-3e16678518c0),CreateRoom,Booking Id: DVL:919d3a2b-95c6-49c4-9fc3-3e16678518c0,true
+Fri Oct 08 19:39:27 EDT 2021,Timeslot (9:30-10:00) has been booked | Booking ID: DVL:c3827abc-6685-4fee-812d-6678134970eb,CreateRoom,Identifier: dvls1234 | Room Number: 201 | Date: 01-01-2021 | Timeslot: 9:30-10:00,true
+Fri Oct 08 19:39:35 EDT 2021,Unable to get server details from the central repository,,,false
+Fri Oct 08 19:39:56 EDT 2021,Timeslot (10:30-11:00) has been booked | Booking ID: DVL:a5ccd5ac-fbfe-457b-b14e-ecba754c3a4e,CreateRoom,Identifier: dvls1234 | Room Number: 202 | Date: 02-01-2021 | Timeslot: 10:30-11:00,true
+Fri Oct 08 19:40:09 EDT 2021,Timeslot (9:30-10:00) does not exist on (01-01-2021),CreateRoom,Identifier: dvls1234 | Room Number: 203 | Date: 01-01-2021 | Timeslot: 9:30-10:00,false
+Fri Oct 08 19:40:23 EDT 2021,Timeslot (11:00-11:30) has been booked | Booking ID: DVL:d2fa639f-4784-4525-a4fa-393e26e0d477,CreateRoom,Identifier: dvls1234 | Room Number: 203 | Date: 03-01-2021 | Timeslot: 11:00-11:30,true
+Fri Oct 08 19:40:39 EDT 2021,Unable to book room, maximum booking limit is reached,CreateRoom,Identifier: dvls1234 | Room Number: 204 | Date: 04-01-2021 | Timeslot: 11:30-12:00,false
+Fri Oct 08 20:53:47 EDT 2021,Timeslot (10:00-10:30) has been booked | Booking ID: DVL:37aa0226-8f88-438f-a3e8-a428c2d68b65,CreateRoom,Identifier: dvls1234 | Room Number: 210 | Date: 01-01-2021 | Timeslot: 10:00-10:30,true
+Fri Oct 08 20:53:58 EDT 2021,Cancelled booking (DVL:37aa0226-8f88-438f-a3e8-a428c2d68b65),CreateRoom,Booking Id: DVL:37aa0226-8f88-438f-a3e8-a428c2d68b65,true
+Fri Oct 08 20:54:04 EDT 2021,DVL 3 KKL 1 WST 1,GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 20:55:04 EDT 2021,Booking (KKL:04bb63a5-5fd8-479b-a78d-f5d50456a88f) is reserved to another student,CreateRoom,Booking Id: KKL:04bb63a5-5fd8-479b-a78d-f5d50456a88f,false
+Fri Oct 08 20:59:10 EDT 2021,Booking (KKL:90f7e578-63fa-4d30-9b6b-3d7a77385a13) is reserved to another student,CreateRoom,Booking Id: KKL:90f7e578-63fa-4d30-9b6b-3d7a77385a13,false
+Fri Oct 08 20:59:40 EDT 2021,Unable to connect to remote server,,,false
+Fri Oct 08 21:00:09 EDT 2021,DVL 1 KKL 0 WST (no response from server),GetAvailableTimeslots,Date: 01-01-2021,true
+Fri Oct 08 21:32:59 EDT 2021,DVL 1 KKL 1 WST 1,GetAvailableTimeslots,Date: 01-01-2021,true
+Wed Oct 13 13:08:29 EDT 2021,DVL 1 KKL 1 WST 1,GetAvailableTimeslots,Date: 01-01-2021,true
