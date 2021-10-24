@@ -395,9 +395,9 @@ public class RoomReservationImpl implements RoomReservation {
         }
         ResponseObject.Builder responseObject = ResponseObject.newBuilder();
         responseObject.setStatus(true);
-        responseObject.setMessage(Integer.toString(1));
+        responseObject.setMessage(Integer.toString(counter));
         responseObject.setDateTime(new Date().toString());
-        responseObject.setRequestType(RequestObjectAction.CreateRoom.toString());
+        responseObject.setRequestType(RequestObjectAction.GetBookingCount.toString());
         responseObject.setRequestParameters("Identifier: " + identifier + " | Date: " + date);
         Logger.log(logFilePath, responseObject.build());
         return responseObject.build().toByteArray();
