@@ -1,6 +1,6 @@
 # soen423_a3
 
-##To generate proto files:
+## To generate proto files:
 
 > protoc -I=. --java_out=. requestObject.proto
 
