@@ -1,3 +1,5 @@
+package com.roomreservation;
+
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.roomreservation.common.CentralRepositoryUtils;
 import com.roomreservation.common.Parsing;
