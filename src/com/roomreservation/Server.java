@@ -25,8 +25,22 @@ public class Server {
         try {
             if (args.length <= 1) {
                 Campus campus = getCampus(args[0]);
-                startWebServices(campus);
-                startUDPServer(campus); // For internal communication between servers
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            startWebServices(campus);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        startUDPServer(campus); // For internal communication between servers
+                    }
+                }).start();
             } else {
                 System.err.println("Please only specify one parameter");
                 System.exit(1);

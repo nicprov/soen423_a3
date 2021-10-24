@@ -34,12 +34,11 @@ public class StudentClient {
             logFilePath = "log/client/" + identifier + ".csv";
             Logger.initializeLog(logFilePath);
             System.out.println("Lookup completed");
-            URL url = new URL("http", "127.0.0.1", centralRepository.getPort(), "/roomreservation?wsdl");
-            RoomReservationImplService service = new RoomReservationImplService(url);
+            RoomReservationImplService service = new RoomReservationImplService(new URL("http", centralRepository.getHost(), centralRepository.getPort(), centralRepository.getPath()));
             roomReservation = service.getRoomReservationImplPort();
             startStudent(bufferedReader);
         } catch (Exception e) {
-            System.out.println(ANSI_RED + "Unable to start client: " + e.getMessage() + RESET);
+            System.out.println(ANSI_RED + "Unable to start client: " + RESET);
         }
     }
 
@@ -138,16 +137,10 @@ public class StudentClient {
                         System.out.println(ANSI_GREEN + response.getMessage() + RESET);
                     else
                         System.out.println(ANSI_RED + response.getMessage() + RESET);
-                    //Logger.log(logFilePath, response);
+                    Logger.log(logFilePath, response);
                 } else {
                     System.out.println(ANSI_RED + "Unable to connect to remote server" + RESET);
                 }
-//            } catch (org.omg.CORBA.TRANSIENT exception){
-//                System.out.println(ANSI_RED + "Unable to connect to remote server, retrying..." + RESET);
-//                Thread.sleep(1000);
-//                roomReservation = Corba.connectCorba(identifier.substring(0, 3));
-//                startStudent(bufferedReader);
-//            }
             } catch (IOException e) {
                 System.out.println(ANSI_RED + "Exception: " + e.getMessage() + RESET);
             }

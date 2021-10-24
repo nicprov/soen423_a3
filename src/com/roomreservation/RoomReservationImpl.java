@@ -112,7 +112,7 @@ public class RoomReservationImpl implements RoomReservation {
         responseObject.setDateTime(new Date().toString());
         responseObject.setRequestType(RequestObjectAction.CreateRoom.toString());
         responseObject.setRequestParameters("Room number: " + roomNumber + " | Date: " + date + " | List of Timeslots: " + listOfTimeSlots);
-        //Logger.log(logFilePath, rmiResponse);
+        Logger.log(logFilePath, responseObject.build());
         return responseObject.build().toByteArray();
     }
 
@@ -163,7 +163,7 @@ public class RoomReservationImpl implements RoomReservation {
         responseObject.setDateTime(new Date().toString());
         responseObject.setRequestType(RequestObjectAction.CreateRoom.toString());
         responseObject.setRequestParameters("Room number: " + roomNumber + " | Date: " + date + " | List of Timeslots: " + listOfTimeSlots);
-        //Logger.log(logFilePath, rmiResponse);
+        Logger.log(logFilePath, responseObject.build());
         return responseObject.build().toByteArray();
     }
 
@@ -232,7 +232,7 @@ public class RoomReservationImpl implements RoomReservation {
         responseObject.setRequestType(RequestObjectAction.GetAvailableTimeslots.toString());
         responseObject.setRequestParameters("Date: " + date);
         responseObject.setStatus(true);
-        //Logger.log(logFilePath, rmiResponse);
+        Logger.log(logFilePath, responseObject.build());
         return responseObject.build().toByteArray();
     }
 
@@ -258,9 +258,61 @@ public class RoomReservationImpl implements RoomReservation {
         }
     }
 
+    /**
+     * Change reservation Corba method
+     * @param identifier User ID (ie. dvls1234)
+     * @param bookingId Booking ID
+     * @param newCampusName New campus to make reservation on
+     * @param newRoomNumber New room number to make reservation on
+     * @param newDate New date to make reservation on
+     * @param newTimeslot New timeslot to make reservation on
+     * @return Corba response object
+     */
     @Override
     public byte[] changeReservation(String identifier, String bookingId, String newCampusName, int newRoomNumber, String newDate, String newTimeslot) {
-        return new byte[0];
+        String requestParameters = "Booking ID: " + bookingId + " | Campus Name: " + newCampusName + " | Room number: " + newRoomNumber + " | New date: " + newDate + " | Timeslot: " + newTimeslot;
+        try{
+            // Cancel existing booking
+            ResponseObject cancelBooking = ResponseObject.parseFrom(cancelBooking(identifier, bookingId));
+            if (cancelBooking.getStatus()){
+                // Create new booking
+                ResponseObject createBooking = ResponseObject.parseFrom(bookRoom(identifier, newCampusName, newRoomNumber, newDate, newTimeslot));
+                if (createBooking.getStatus()){
+                    ResponseObject.Builder response = ResponseObject.newBuilder();
+                    response.setRequestType(RequestObjectAction.ChangeReservation.toString());
+                    response.setRequestParameters(requestParameters);
+                    response.setStatus(true);
+                    response.setMessage(createBooking.getMessage());
+                    response.setDateTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+                    return response.build().toByteArray();
+                } else {
+                    ResponseObject.Builder response = ResponseObject.newBuilder();
+                    response.setRequestType(RequestObjectAction.ChangeReservation.toString());
+                    response.setRequestParameters(requestParameters);
+                    response.setStatus(createBooking.getStatus());
+                    response.setMessage(createBooking.getMessage());
+                    response.setDateTime(createBooking.getDateTime());
+                    return response.build().toByteArray();
+                }
+            } else {
+                ResponseObject.Builder response = ResponseObject.newBuilder();
+                response.setRequestType(RequestObjectAction.ChangeReservation.toString());
+                response.setRequestParameters(requestParameters);
+                response.setStatus(cancelBooking.getStatus());
+                response.setMessage(cancelBooking.getMessage());
+                response.setDateTime(cancelBooking.getDateTime());
+                return response.build().toByteArray();
+            }
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        ResponseObject.Builder response = ResponseObject.newBuilder();
+        response.setRequestType(RequestObjectAction.ChangeReservation.toString());
+        response.setRequestParameters(requestParameters);
+        response.setStatus(false);
+        response.setMessage("Error decoding protobuf message");
+        response.setDateTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        return response.build().toByteArray();
     }
 
     /**
@@ -285,7 +337,7 @@ public class RoomReservationImpl implements RoomReservation {
         responseObject.setRequestType(RequestObjectAction.GetAvailableTimeslots.toString());
         responseObject.setRequestParameters("Date: " + date);
         responseObject.setStatus(true);
-        //Logger.log(logFilePath, rmiResponse);
+        Logger.log(logFilePath, responseObject.build());
         return responseObject.build().toByteArray();
     }
 
@@ -316,7 +368,7 @@ public class RoomReservationImpl implements RoomReservation {
         responseObject.setDateTime(new Date().toString());
         responseObject.setRequestType(RequestObjectAction.CreateRoom.toString());
         responseObject.setRequestParameters("Identifier: " + identifier + " | Date: " + date);
-        //Logger.log(logFilePath, rmiResponse);
+        Logger.log(logFilePath, responseObject.build());
         return responseObject.build().toByteArray();
     }
 
@@ -398,7 +450,7 @@ public class RoomReservationImpl implements RoomReservation {
         responseObject.setDateTime(new Date().toString());
         responseObject.setRequestType(RequestObjectAction.CreateRoom.toString());
         responseObject.setRequestParameters("Identifier: " + identifier + " | Room Number: " + roomNumber + " | Date: " + date + " | Timeslot: " + timeslot);
-        //Logger.log(logFilePath, rmiResponse);
+        Logger.log(logFilePath, responseObject.build());
         return responseObject.build().toByteArray();
     }
 
@@ -449,7 +501,7 @@ public class RoomReservationImpl implements RoomReservation {
         responseObject.setDateTime(new Date().toString());
         responseObject.setRequestType(RequestObjectAction.CreateRoom.toString());
         responseObject.setRequestParameters("Booking Id: " + bookingId);
-        //Logger.log(logFilePath, rmiResponse);
+        Logger.log(logFilePath, responseObject.build());
         return responseObject.build().toByteArray();
     }
 
@@ -525,9 +577,7 @@ public class RoomReservationImpl implements RoomReservation {
                     }
                 }
             }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        } catch (ParseException ignored) {}
     }
 
     /**

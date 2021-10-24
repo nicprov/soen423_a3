@@ -1,5 +1,7 @@
 package com.roomreservation.common;
 
+import com.roomreservation.protobuf.protos.ResponseObject;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -22,12 +24,22 @@ public class Logger {
     /**
      * Adds entry in log file
      * @param logFilePath Logger file path
-     * @param rmiResponse RMI Response object
      * @throws IOException Exception
      */
-//    public static void log(String logFilePath, RMIResponse rmiResponse) throws IOException {
-//        FileWriter fileWriter = new FileWriter(logFilePath, true);
-//        fileWriter.append(rmiResponse.toString()).append("\n");
-//        fileWriter.close();
-//    }
+    public static void log(String logFilePath, ResponseObject responseObject) {
+        try {
+            FileWriter fileWriter = new FileWriter(logFilePath, true);
+            fileWriter.append(responseObject.toString()).append("\n");
+            fileWriter.close();
+        } catch (IOException ignored) {}
+    }
+
+    /**
+     * Converts Corba RMIResponse object to an appropriate string for the logger
+     * @param responseObject ResponseObject object
+     * @return
+     */
+    private static String toString(ResponseObject responseObject){
+        return responseObject.getDateTime() + "," + responseObject.getMessage() + "," + responseObject.getRequestType() + "," + responseObject.getRequestParameters() + "," + responseObject.getStatus();
+    }
 }

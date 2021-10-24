@@ -4,6 +4,7 @@ public enum RequestObjectAction {
     GetAvailableTimeslots,
     BookRoom,
     CancelBooking,
+    ChangeReservation,
     GetBookingCount,
     CreateRoom,
     DeleteRoom
