@@ -123,7 +123,7 @@ public class RoomReservationImpl implements RoomReservation {
             }
             responseObject.setDateTime(new Date().toString());
             responseObject.setRequestType(RequestObjectAction.CreateRoom.toString());
-            responseObject.setRequestParameters("Room number: " + roomNumber + " | Date: " + date + " | List of Timeslots: [UNABLE TO DECODE]");
+            responseObject.setRequestParameters("Room number: " + roomNumber + " | Date: " + date + " | List of Timeslots: " + listOfTimeSlotsProto.toString());
             Logger.log(logFilePath, responseObject.build());
             return responseObject.build().toByteArray();
         } catch (InvalidProtocolBufferException e) {
@@ -343,7 +343,7 @@ public class RoomReservationImpl implements RoomReservation {
         response.setRequestParameters(requestParameters);
         response.setStatus(false);
         response.setMessage("Error decoding protobuf message");
-        response.setDateTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        response.setDateTime(new Date().toString());
         return response.build().toByteArray();
     }
 
@@ -473,13 +473,13 @@ public class RoomReservationImpl implements RoomReservation {
             responseObject.setMessage("Timeslot (" + timeslot + ") does not exist on (" + date + ")");
             responseObject.setStatus(false);
         } else if (isOverBookingCountLimit) {
-            responseObject.setMessage("Unable to book room, maximum booking limit is reached");
+            responseObject.setMessage("Unable to book room maximum booking limit is reached");
             responseObject.setStatus(false);
         } else if (isBooked){
             responseObject.setMessage("Timeslot (" + timeslot + ") has been booked | Booking ID: " + bookingId);
             responseObject.setStatus(true);
         } else {
-            responseObject.setMessage("Unable to book room, timeslot (" + timeslot + ") has already booked");
+            responseObject.setMessage("Unable to book room timeslot (" + timeslot + ") has already booked");
             responseObject.setStatus(false);
         }
         responseObject.setDateTime(new Date().toString());
@@ -643,7 +643,7 @@ public class RoomReservationImpl implements RoomReservation {
             } else {
                 System.out.println(ANSI_RED + "Unable to get server details from the central repository" + RESET);
                 ResponseObject.Builder responseObject = ResponseObject.newBuilder();
-                responseObject.setDateTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+                responseObject.setDateTime(new Date().toString());
                 responseObject.setRequestType("");
                 responseObject.setRequestParameters("");
                 responseObject.setStatus(false);
@@ -660,7 +660,7 @@ public class RoomReservationImpl implements RoomReservation {
                 datagramSocket.close();
         }
         ResponseObject.Builder responseObject = ResponseObject.newBuilder();
-        responseObject.setDateTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        responseObject.setDateTime(new Date().toString());
         responseObject.setRequestType("");
         responseObject.setRequestParameters("");
         responseObject.setStatus(false);
