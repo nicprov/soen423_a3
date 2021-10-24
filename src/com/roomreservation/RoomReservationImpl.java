@@ -686,9 +686,14 @@ public class RoomReservationImpl implements RoomReservation {
      */
     private void generateSampleData(){
         this.createRoom(201, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
-        this.createRoom(202, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("10:30-11:00"));
-        this.createRoom(203, Parsing.tryParseDate("2021-01-03"), Parsing.tryParseTimeslotList("11:00-11:30"));
-        this.createRoom(204, Parsing.tryParseDate("2021-01-04"), Parsing.tryParseTimeslotList("11:30-12:00"));
-        this.createRoom(205, Parsing.tryParseDate("2021-01-05"), Parsing.tryParseTimeslotList("12:00-12:30"));
+        this.createRoom(201, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
+        this.createRoom(202, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
+        this.createRoom(202, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
+        this.createRoom(203, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
+        this.createRoom(203, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
+        this.createRoom(204, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
+        this.createRoom(204, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
+        this.createRoom(205, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
+        this.createRoom(205, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
     }
 }

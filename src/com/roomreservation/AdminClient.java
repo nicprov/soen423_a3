@@ -33,8 +33,7 @@ public class AdminClient {
             logFilePath = "log/client/" + identifier + ".csv";
             Logger.initializeLog(logFilePath);
             System.out.println("Lookup completed");
-            URL url = new URL("http", centralRepository.getHost(), centralRepository.getPort(), centralRepository.getPath());
-            RoomReservationImplService service = new RoomReservationImplService(url);
+            RoomReservationImplService service = new RoomReservationImplService(new URL("http", centralRepository.getHost(), centralRepository.getPort(), centralRepository.getPath()));
             roomReservation = service.getRoomReservationImplPort();
             startAdmin(bufferedReader);
         } catch (Exception e) {
