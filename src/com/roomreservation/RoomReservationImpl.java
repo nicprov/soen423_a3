@@ -42,7 +42,7 @@ public class RoomReservationImpl implements RoomReservation {
         this.campus = Campus.DVL;
         logFilePath = "log/server/" + this.campus.toString() + ".csv";
         Logger.initializeLog(logFilePath);
-        //this.generateSampleData();
+        this.generateSampleData();
     }
 
     protected RoomReservationImpl(Campus campus) throws IOException {
@@ -51,7 +51,7 @@ public class RoomReservationImpl implements RoomReservation {
         this.campus = campus;
         logFilePath = "log/server/" + this.campus.toString() + ".csv";
         Logger.initializeLog(logFilePath);
-        //this.generateSampleData();
+        this.generateSampleData();
     }
 
     /**
@@ -723,16 +723,16 @@ public class RoomReservationImpl implements RoomReservation {
     /**
      * Generates sample data in campus
      */
-//    private void generateSampleData(){
-//        this.createRoom(201, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
-//        this.createRoom(201, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
-//        this.createRoom(202, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
-//        this.createRoom(202, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
-//        this.createRoom(203, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
-//        this.createRoom(203, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
-//        this.createRoom(204, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
-//        this.createRoom(204, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
-//        this.createRoom(205, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
-//        this.createRoom(205, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
-//    }
+    private void generateSampleData(){
+        this.createRoom(201, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00").toByteArray());
+        this.createRoom(201, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00").toByteArray());
+        this.createRoom(202, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00").toByteArray());
+        this.createRoom(202, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00").toByteArray());
+        this.createRoom(203, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00").toByteArray());
+        this.createRoom(203, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00").toByteArray());
+        this.createRoom(204, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00").toByteArray());
+        this.createRoom(204, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00").toByteArray());
+        this.createRoom(205, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00").toByteArray());
+        this.createRoom(205, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00").toByteArray());
+    }
 }

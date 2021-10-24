@@ -29,7 +29,7 @@ public class Logger {
     public static void log(String logFilePath, ResponseObject responseObject) {
         try {
             FileWriter fileWriter = new FileWriter(logFilePath, true);
-            fileWriter.append(responseObject.toString()).append("\n");
+            fileWriter.append(toString(responseObject)).append("\n");
             fileWriter.close();
         } catch (IOException ignored) {}
     }
