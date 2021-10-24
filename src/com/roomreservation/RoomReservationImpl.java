@@ -31,16 +31,16 @@ import static com.roomreservation.common.ConsoleColours.RESET;
 @WebService(endpointInterface = "com.roomreservation.RoomReservation")
 public class RoomReservationImpl implements RoomReservation {
 
-    private final LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> database;
-    private final LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<Date, Integer>>>> bookingCount;
+    private static volatile LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> database;
+    private static volatile LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<Date, Integer>>>> bookingCount;
     private final String logFilePath;
     private final Campus campus;
     private final ReentrantLock databaseLock = new ReentrantLock();
     private final ReentrantLock bookingLock = new ReentrantLock();
 
     public RoomReservationImpl() throws IOException {
-        this.database = new LinkedPositionalList<>();
-        this.bookingCount = new LinkedPositionalList<>();
+        database = new LinkedPositionalList<>();
+        bookingCount = new LinkedPositionalList<>();
         this.campus = Campus.DVL;
         logFilePath = "log/server/" + this.campus.toString() + ".csv";
         Logger.initializeLog(logFilePath);
@@ -48,8 +48,8 @@ public class RoomReservationImpl implements RoomReservation {
     }
 
     protected RoomReservationImpl(Campus campus) throws IOException {
-        this.database = new LinkedPositionalList<>();
-        this.bookingCount = new LinkedPositionalList<>();
+        database = new LinkedPositionalList<>();
+        bookingCount = new LinkedPositionalList<>();
         this.campus = campus;
         logFilePath = "log/server/" + this.campus.toString() + ".csv";
         Logger.initializeLog(logFilePath);
@@ -62,7 +62,6 @@ public class RoomReservationImpl implements RoomReservation {
      * @param date Date
      * @param listOfTimeSlots List of timeslots to add
      * @return RMI response object
-     * @throws IOException Exception
      */
     @Override
     public synchronized byte[] createRoom(int roomNumber, String date, ArrayList<String> listOfTimeSlots) {
@@ -75,7 +74,12 @@ public class RoomReservationImpl implements RoomReservation {
             for (String timeslot: listOfTimeSlots){
                 timeslots.addFirst(new Node<>(timeslot, null));
             }
-            database.addFirst(new Node<>(date, new LinkedPositionalList<>(new Node<>(roomNumber, timeslots))));
+            databaseLock.lock();
+            try {
+                database.addFirst(new Node<>(date, new LinkedPositionalList<>(new Node<>(roomNumber, timeslots))));
+            } finally {
+                databaseLock.unlock();
+            }
         } else {
             // Date exist, check if room exist
             Position<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>> roomPosition = findRoom(roomNumber, datePosition);
@@ -85,15 +89,23 @@ public class RoomReservationImpl implements RoomReservation {
                 for (String timeslot: listOfTimeSlots){
                     timeslots.addFirst(new Node<>(timeslot, null));
                 }
-                datePosition.getElement().getValue().addFirst(new Node<>(roomNumber, timeslots));
+                databaseLock.lock();
+                try {
+                    datePosition.getElement().getValue().addFirst(new Node<>(roomNumber, timeslots));
+                } finally {
+                    databaseLock.unlock();
+                }
             } else {
                 // Room exist, so check if timeslot exist
                 roomExist = true;
                 for (String timeslot: listOfTimeSlots){
-                    if (findTimeslot(timeslot, roomPosition) == null) {
+                    databaseLock.lock();
+                    try {
                         // Timeslot does not exist, so create it, skip otherwise
                         roomPosition.getElement().getValue().addFirst(new Node<>(timeslot, null));
                         timeSlotCreated = true;
+                    } finally {
+                        databaseLock.unlock();
                     }
                 }
             }
@@ -122,7 +134,6 @@ public class RoomReservationImpl implements RoomReservation {
      * @param date Date
      * @param listOfTimeSlots List of time slots to remove
      * @return RMI Response object
-     * @throws IOException Exception
      */
     @Override
     public synchronized byte[] deleteRoom(int roomNumber, String date, ArrayList<String> listOfTimeSlots) {
@@ -144,10 +155,14 @@ public class RoomReservationImpl implements RoomReservation {
                                 }
                             }
                         }
-
-                        // Timeslot exists, so delete it
-                        roomPosition.getElement().getValue().remove(timeslotPosition);
-                        timeslotExist = true;
+                        databaseLock.lock();
+                        try {
+                            // Timeslot exists, so delete it
+                            roomPosition.getElement().getValue().remove(timeslotPosition);
+                            timeslotExist = true;
+                        } finally {
+                            databaseLock.unlock();
+                        }
                     }
                 }
             }
@@ -175,7 +190,6 @@ public class RoomReservationImpl implements RoomReservation {
      * @param date Date
      * @param timeslot Timeslot to book
      * @return RMI response object
-     * @throws IOException Exception
      */
     @Override
     public synchronized byte[] bookRoom(String identifier, String campus, int roomNumber, String date, String timeslot) {
@@ -198,7 +212,6 @@ public class RoomReservationImpl implements RoomReservation {
      * Get available timeslot RMI method
      * @param date Date
      * @return RMI response object
-     * @throws IOException Exception
      */
     @Override
     public synchronized byte[] getAvailableTimeSlot(String date) {
@@ -241,7 +254,6 @@ public class RoomReservationImpl implements RoomReservation {
      * @param identifier User ID (ie. dvls1234)
      * @param bookingId Booking id
      * @return RMI response object
-     * @throws IOException Exception
      */
     @Override
     public synchronized byte[] cancelBooking(String identifier, String bookingId) {
@@ -319,7 +331,6 @@ public class RoomReservationImpl implements RoomReservation {
      * Counts the number of available timeslots on a given day in the given campus
      * @param date Date
      * @return RMI response object
-     * @throws IOException Exception
      */
     public byte[] getAvailableTimeSlotOnCampus(String date) {
         int counter = 0;
@@ -379,7 +390,6 @@ public class RoomReservationImpl implements RoomReservation {
      * @param date Date
      * @param timeslot Timeslot
      * @return RMI response object
-     * @throws IOException Exception
      */
     private byte[] bookRoomOnCampus(String identifier, int roomNumber, String date, String timeslot) {
         boolean isOverBookingCountLimit = false;
@@ -421,12 +431,17 @@ public class RoomReservationImpl implements RoomReservation {
                         increaseBookingCounter(identifier, date);
 
                         if (timeslotPosition.getElement().getValue() == null){
-                            // Create timeslot and add attributes
-                            isBooked = true;
-                            bookingId = this.campus + ":" + UUID.randomUUID();
-                            roomPosition.getElement().getValue().set(timeslotPosition, new Node<>(timeslot, new LinkedPositionalList<>()));
-                            timeslotPosition.getElement().getValue().addFirst(new Node<>("bookingId", bookingId));
-                            timeslotPosition.getElement().getValue().addFirst(new Node<>("studentId", identifier));
+                            databaseLock.lock();
+                            try {
+                                // Create timeslot and add attributes
+                                isBooked = true;
+                                bookingId = this.campus + ":" + UUID.randomUUID();
+                                roomPosition.getElement().getValue().set(timeslotPosition, new Node<>(timeslot, new LinkedPositionalList<>()));
+                                timeslotPosition.getElement().getValue().addFirst(new Node<>("bookingId", bookingId));
+                                timeslotPosition.getElement().getValue().addFirst(new Node<>("studentId", identifier));
+                            } finally {
+                                databaseLock.unlock();
+                            }
                         }
                     } else
                         isOverBookingCountLimit = true;
@@ -459,7 +474,6 @@ public class RoomReservationImpl implements RoomReservation {
      * @param identifier User
      * @param bookingId Booking id
      * @return RMI response object
-     * @throws IOException Exception
      */
     private byte[] cancelBookingOnCampus(String identifier, String bookingId) {
         boolean bookingExist = false;
@@ -480,8 +494,13 @@ public class RoomReservationImpl implements RoomReservation {
                             // Reduce booking count
                             decreaseBookingCounter(identifier, datePosition.getElement().getKey());
 
-                            // Cancel booking
-                            roomPosition.getElement().getValue().set(timeslotPosition, new Node<>(timeslotPosition.getElement().getKey(), null));
+                            databaseLock.lock();
+                            try {
+                                // Cancel booking
+                                roomPosition.getElement().getValue().set(timeslotPosition, new Node<>(timeslotPosition.getElement().getKey(), null));
+                            } finally {
+                                databaseLock.unlock();
+                            }
                         }
                     }
                 }
