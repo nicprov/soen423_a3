@@ -1,9 +1,9 @@
 import com.google.protobuf.InvalidProtocolBufferException;
-import com.roomreservation.RoomReservation;
 import com.roomreservation.common.CentralRepositoryUtils;
 import com.roomreservation.common.Parsing;
 import com.roomreservation.protobuf.protos.CentralRepository;
 import com.roomreservation.protobuf.protos.ResponseObject;
+import com.roomreservation.service.RoomReservation;
 import com.roomreservation.service.RoomReservationImplService;
 
 import java.net.MalformedURLException;

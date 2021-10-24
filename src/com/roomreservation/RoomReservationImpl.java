@@ -6,10 +6,7 @@ import com.roomreservation.collection.LinkedPositionalList;
 import com.roomreservation.collection.Node;
 import com.roomreservation.collection.Position;
 import com.roomreservation.common.*;
-import com.roomreservation.protobuf.protos.CentralRepository;
-import com.roomreservation.protobuf.protos.RequestObject;
-import com.roomreservation.protobuf.protos.ResponseObject;
-import com.roomreservation.protobuf.protos.RequestObjectAction;
+import com.roomreservation.protobuf.protos.*;
 
 import javax.jws.WebService;
 import java.io.IOException;
@@ -17,12 +14,13 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.UUID;
 import java.util.concurrent.locks.ReentrantLock;
 
 import static com.roomreservation.common.ConsoleColours.ANSI_RED;
@@ -44,7 +42,7 @@ public class RoomReservationImpl implements RoomReservation {
         this.campus = Campus.DVL;
         logFilePath = "log/server/" + this.campus.toString() + ".csv";
         Logger.initializeLog(logFilePath);
-        this.generateSampleData();
+        //this.generateSampleData();
     }
 
     protected RoomReservationImpl(Campus campus) throws IOException {
@@ -53,7 +51,7 @@ public class RoomReservationImpl implements RoomReservation {
         this.campus = campus;
         logFilePath = "log/server/" + this.campus.toString() + ".csv";
         Logger.initializeLog(logFilePath);
-        this.generateSampleData();
+        //this.generateSampleData();
     }
 
     /**
@@ -64,68 +62,79 @@ public class RoomReservationImpl implements RoomReservation {
      * @return RMI response object
      */
     @Override
-    public synchronized byte[] createRoom(int roomNumber, String date, ArrayList<String> listOfTimeSlots) {
-        Position<Entry<String, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> datePosition = findDate(date);
-        boolean timeSlotCreated = false;
-        boolean roomExist = false;
-        if (datePosition == null){
-            // Date not found so create date entry
-            LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>> timeslots = new LinkedPositionalList<>();
-            for (String timeslot: listOfTimeSlots){
-                timeslots.addFirst(new Node<>(timeslot, null));
-            }
-            databaseLock.lock();
-            try {
-                database.addFirst(new Node<>(date, new LinkedPositionalList<>(new Node<>(roomNumber, timeslots))));
-            } finally {
-                databaseLock.unlock();
-            }
-        } else {
-            // Date exist, check if room exist
-            Position<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>> roomPosition = findRoom(roomNumber, datePosition);
-            if (roomPosition == null) {
-                // Room not found so create room
+    public synchronized byte[] createRoom(int roomNumber, String date, byte[] listOfTimeSlots) {
+        try {
+            ListOfTimeSlots listOfTimeSlotsProto = ListOfTimeSlots.parseFrom(listOfTimeSlots);
+            Position<Entry<String, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> datePosition = findDate(date);
+            boolean timeSlotCreated = false;
+            boolean roomExist = false;
+            if (datePosition == null){
+                // Date not found so create date entry
                 LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>> timeslots = new LinkedPositionalList<>();
-                for (String timeslot: listOfTimeSlots){
+                for (String timeslot: listOfTimeSlotsProto.getTimeslotList()){
                     timeslots.addFirst(new Node<>(timeslot, null));
                 }
                 databaseLock.lock();
                 try {
-                    datePosition.getElement().getValue().addFirst(new Node<>(roomNumber, timeslots));
+                    database.addFirst(new Node<>(date, new LinkedPositionalList<>(new Node<>(roomNumber, timeslots))));
                 } finally {
                     databaseLock.unlock();
                 }
             } else {
-                // Room exist, so check if timeslot exist
-                roomExist = true;
-                for (String timeslot: listOfTimeSlots){
+                // Date exist, check if room exist
+                Position<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>> roomPosition = findRoom(roomNumber, datePosition);
+                if (roomPosition == null) {
+                    // Room not found so create room
+                    LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>> timeslots = new LinkedPositionalList<>();
+                    for (String timeslot: listOfTimeSlotsProto.getTimeslotList()){
+                        timeslots.addFirst(new Node<>(timeslot, null));
+                    }
                     databaseLock.lock();
                     try {
-                        // Timeslot does not exist, so create it, skip otherwise
-                        roomPosition.getElement().getValue().addFirst(new Node<>(timeslot, null));
-                        timeSlotCreated = true;
+                        datePosition.getElement().getValue().addFirst(new Node<>(roomNumber, timeslots));
                     } finally {
                         databaseLock.unlock();
                     }
+                } else {
+                    // Room exist, so check if timeslot exist
+                    roomExist = true;
+                    for (String timeslot: listOfTimeSlotsProto.getTimeslotList()){
+                        databaseLock.lock();
+                        try {
+                            // Timeslot does not exist, so create it, skip otherwise
+                            roomPosition.getElement().getValue().addFirst(new Node<>(timeslot, null));
+                            timeSlotCreated = true;
+                        } finally {
+                            databaseLock.unlock();
+                        }
+                    }
                 }
             }
+            ResponseObject.Builder responseObject = ResponseObject.newBuilder();
+            if (!roomExist) {
+                responseObject.setMessage("Created room (" + roomNumber + ")");
+                responseObject.setStatus(true);
+            } else if (!timeSlotCreated){
+                responseObject.setMessage("Room already exist with specified timeslots");
+                responseObject.setStatus(false);
+            } else {
+                responseObject.setMessage("Added timeslots to room (" + roomNumber + ")");
+                responseObject.setStatus(true);
+            }
+            responseObject.setDateTime(new Date().toString());
+            responseObject.setRequestType(RequestObjectAction.CreateRoom.toString());
+            responseObject.setRequestParameters("Room number: " + roomNumber + " | Date: " + date + " | List of Timeslots: [UNABLE TO DECODE]");
+            Logger.log(logFilePath, responseObject.build());
+            return responseObject.build().toByteArray();
+        } catch (InvalidProtocolBufferException e) {
+            ResponseObject.Builder responseObject = ResponseObject.newBuilder();
+            responseObject.setMessage("Protobuf parse exception");
+            responseObject.setDateTime(new Date().toString());
+            responseObject.setRequestType(RequestObjectAction.CreateRoom.toString());
+            responseObject.setRequestParameters("Room number: " + roomNumber + " | Date: " + date + " | List of Timeslots: [UNABLE TO DECODE]");
+            Logger.log(logFilePath, responseObject.build());
+            return responseObject.build().toByteArray();
         }
-        ResponseObject.Builder responseObject = ResponseObject.newBuilder();
-        if (!roomExist) {
-            responseObject.setMessage("Created room (" + roomNumber + ")");
-            responseObject.setStatus(true);
-        } else if (!timeSlotCreated){
-            responseObject.setMessage("Room already exist with specified timeslots");
-            responseObject.setStatus(false);
-        } else {
-            responseObject.setMessage("Added timeslots to room (" + roomNumber + ")");
-            responseObject.setStatus(true);
-        }
-        responseObject.setDateTime(new Date().toString());
-        responseObject.setRequestType(RequestObjectAction.CreateRoom.toString());
-        responseObject.setRequestParameters("Room number: " + roomNumber + " | Date: " + date + " | List of Timeslots: " + listOfTimeSlots);
-        Logger.log(logFilePath, responseObject.build());
-        return responseObject.build().toByteArray();
     }
 
     /**
@@ -136,50 +145,61 @@ public class RoomReservationImpl implements RoomReservation {
      * @return RMI Response object
      */
     @Override
-    public synchronized byte[] deleteRoom(int roomNumber, String date, ArrayList<String> listOfTimeSlots) {
-        Position<Entry<String, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> datePosition = findDate(date);
-        boolean timeslotExist = false;
-        if (datePosition != null){
-            // Date exist, check if room exist
-            Position<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>> roomPosition = findRoom(roomNumber, datePosition);
-            if (roomPosition != null) {
-                // Room found, search for timeslots
-                for (String timeslot: listOfTimeSlots){
-                    Position<Entry<String, LinkedPositionalList<Entry<String, String>>>> timeslotPosition = findTimeslot(timeslot, roomPosition);
-                    if (timeslotPosition != null) {
-                        if (timeslotPosition.getElement().getValue() != null) {
-                            for (Position<Entry<String, String>> timeslotPropertiesNext : timeslotPosition.getElement().getValue().positions()) {
-                                if (timeslotPropertiesNext.getElement().getValue().equals("studentId")) {
-                                    // Reduce booking count for student
-                                    decreaseBookingCounter(timeslotPropertiesNext.getElement().getValue(), datePosition.getElement().getKey());
+    public synchronized byte[] deleteRoom(int roomNumber, String date, byte[] listOfTimeSlots) {
+        try {
+            ListOfTimeSlots listOfTimeSlotsProto = ListOfTimeSlots.parseFrom(listOfTimeSlots);
+            Position<Entry<String, LinkedPositionalList<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>>>> datePosition = findDate(date);
+            boolean timeslotExist = false;
+            if (datePosition != null){
+                // Date exist, check if room exist
+                Position<Entry<Integer, LinkedPositionalList<Entry<String, LinkedPositionalList<Entry<String, String>>>>>> roomPosition = findRoom(roomNumber, datePosition);
+                if (roomPosition != null) {
+                    // Room found, search for timeslots
+                    for (String timeslot: listOfTimeSlotsProto.getTimeslotList()){
+                        Position<Entry<String, LinkedPositionalList<Entry<String, String>>>> timeslotPosition = findTimeslot(timeslot, roomPosition);
+                        if (timeslotPosition != null) {
+                            if (timeslotPosition.getElement().getValue() != null) {
+                                for (Position<Entry<String, String>> timeslotPropertiesNext : timeslotPosition.getElement().getValue().positions()) {
+                                    if (timeslotPropertiesNext.getElement().getValue().equals("studentId")) {
+                                        // Reduce booking count for student
+                                        decreaseBookingCounter(timeslotPropertiesNext.getElement().getValue(), datePosition.getElement().getKey());
+                                    }
                                 }
                             }
-                        }
-                        databaseLock.lock();
-                        try {
-                            // Timeslot exists, so delete it
-                            roomPosition.getElement().getValue().remove(timeslotPosition);
-                            timeslotExist = true;
-                        } finally {
-                            databaseLock.unlock();
+                            databaseLock.lock();
+                            try {
+                                // Timeslot exists, so delete it
+                                roomPosition.getElement().getValue().remove(timeslotPosition);
+                                timeslotExist = true;
+                            } finally {
+                                databaseLock.unlock();
+                            }
                         }
                     }
                 }
             }
+            ResponseObject.Builder responseObject = ResponseObject.newBuilder();
+            if (!timeslotExist){
+                responseObject.setMessage("No timeslots to delete on (" + date + ")");
+                responseObject.setStatus(false);
+            } else {
+                responseObject.setMessage("Removed timeslots from room (" + roomNumber + ")");
+                responseObject.setStatus(true);
+            }
+            responseObject.setDateTime(new Date().toString());
+            responseObject.setRequestType(RequestObjectAction.DeleteRoom.toString());
+            responseObject.setRequestParameters("Room number: " + roomNumber + " | Date: " + date + " | List of Timeslots: [UNABLE TO DECODE]");
+            Logger.log(logFilePath, responseObject.build());
+            return responseObject.build().toByteArray();
+        } catch (InvalidProtocolBufferException e) {
+            ResponseObject.Builder responseObject = ResponseObject.newBuilder();
+            responseObject.setMessage("Protobuf parse exception");
+            responseObject.setDateTime(new Date().toString());
+            responseObject.setRequestType(RequestObjectAction.DeleteRoom.toString());
+            responseObject.setRequestParameters("Room number: " + roomNumber + " | Date: " + date + " | List of Timeslots: [UNABLE TO DECODE]");
+            Logger.log(logFilePath, responseObject.build());
+            return responseObject.build().toByteArray();
         }
-        ResponseObject.Builder responseObject = ResponseObject.newBuilder();
-        if (!timeslotExist){
-            responseObject.setMessage("No timeslots to delete on (" + date + ")");
-            responseObject.setStatus(false);
-        } else {
-            responseObject.setMessage("Removed timeslots from room (" + roomNumber + ")");
-            responseObject.setStatus(true);
-        }
-        responseObject.setDateTime(new Date().toString());
-        responseObject.setRequestType(RequestObjectAction.CreateRoom.toString());
-        responseObject.setRequestParameters("Room number: " + roomNumber + " | Date: " + date + " | List of Timeslots: " + listOfTimeSlots);
-        Logger.log(logFilePath, responseObject.build());
-        return responseObject.build().toByteArray();
     }
 
     /**
@@ -703,16 +723,16 @@ public class RoomReservationImpl implements RoomReservation {
     /**
      * Generates sample data in campus
      */
-    private void generateSampleData(){
-        this.createRoom(201, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
-        this.createRoom(201, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
-        this.createRoom(202, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
-        this.createRoom(202, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
-        this.createRoom(203, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
-        this.createRoom(203, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
-        this.createRoom(204, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
-        this.createRoom(204, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
-        this.createRoom(205, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
-        this.createRoom(205, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
-    }
+//    private void generateSampleData(){
+//        this.createRoom(201, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
+//        this.createRoom(201, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
+//        this.createRoom(202, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
+//        this.createRoom(202, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
+//        this.createRoom(203, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
+//        this.createRoom(203, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
+//        this.createRoom(204, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
+//        this.createRoom(204, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
+//        this.createRoom(205, Parsing.tryParseDate("2021-01-01"), Parsing.tryParseTimeslotList("9:30-10:00"));
+//        this.createRoom(205, Parsing.tryParseDate("2021-01-02"), Parsing.tryParseTimeslotList("9:30-10:00"));
+//    }
 }

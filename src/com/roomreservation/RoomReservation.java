@@ -11,9 +11,9 @@ import java.util.ArrayList;
 public interface RoomReservation {
     /* Admin role */
     @WebMethod
-    byte[] createRoom(int roomNumber, String date, ArrayList<String> listOfTimeSlots);
+    byte[] createRoom(int roomNumber, String date, byte[] listOfTimeSlots);
     @WebMethod
-    byte[] deleteRoom(int roomNumber, String date, ArrayList<String> listOfTimeSlots);
+    byte[] deleteRoom(int roomNumber, String date, byte[] listOfTimeSlots);
 
     /* Student role */
     @WebMethod

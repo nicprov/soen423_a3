@@ -1,10 +1,15 @@
 package com.roomreservation.common;
 
+import com.roomreservation.protobuf.protos.ListOfTimeSlots;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,14 +24,14 @@ public class Parsing {
      * @return Array list with valid timeslots
      * @throws IOException Exception
      */
-    public static ArrayList<String> getTimeslots(BufferedReader bufferedReader) throws IOException {
+    public static byte[] getTimeslots(BufferedReader bufferedReader) throws IOException {
         System.out.print("Enter a list of timeslots (ie. 9:30-10:00, 11:15-11:30): ");
-        ArrayList<String> timeslots = Parsing.tryParseTimeslotList(bufferedReader.readLine());
+        ListOfTimeSlots timeslots = Parsing.tryParseTimeslotList(bufferedReader.readLine());
         while (timeslots == null){
             System.out.print(ANSI_RED + "Invalid timeslots provided, must be in the following format (ie. 9:30-10:00, 11:15-11:30): " + RESET);
             timeslots = Parsing.tryParseTimeslotList(bufferedReader.readLine());
         }
-        return timeslots;
+        return timeslots.toByteArray();
     }
 
     /**
@@ -139,17 +144,20 @@ public class Parsing {
     /**
      * Try's to parse list of timeslots
      * @param list List of timeslots as string
-     * @return Arraylist of timeslots or null
+     * @return ListOfTimeSlosts proto object or null
      */
-    public static ArrayList<String> tryParseTimeslotList(String list){
+    public static ListOfTimeSlots tryParseTimeslotList(String list){
+        ListOfTimeSlots.Builder listOfTimeSlots = ListOfTimeSlots.newBuilder();
         List<String> tempList = Arrays.asList(list.split("\\s*,\\s*"));
         if (tempList.size() == 0)
             return null;
         for (String timeslot: tempList){
             if (Parsing.tryParseTimeslot(timeslot) == null)
                 return null;
+            else
+                listOfTimeSlots.addTimeslot(timeslot);
         }
-        return new ArrayList<>(tempList);
+        return listOfTimeSlots.build();
     }
 
     /**

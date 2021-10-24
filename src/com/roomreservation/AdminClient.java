@@ -5,6 +5,7 @@ import com.roomreservation.common.Logger;
 import com.roomreservation.common.Parsing;
 import com.roomreservation.protobuf.protos.CentralRepository;
 import com.roomreservation.protobuf.protos.ResponseObject;
+import com.roomreservation.service.RoomReservation;
 import com.roomreservation.service.RoomReservationImplService;
 
 import java.io.BufferedReader;

@@ -6,6 +6,8 @@
 
 > protoc -I=. --java_out=. responseObject.proto
 
+> protoc -I=. --java_out=. listOfTimeSlots.proto
+> 
 ## Using WSIMPORT
 
 > /usr/lib/jvm/jdk-10.0.2/bin/wsimport -keep src/com/roomreservation/roomreservation.wsdl

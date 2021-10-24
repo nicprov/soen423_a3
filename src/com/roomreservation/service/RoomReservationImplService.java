@@ -1,8 +1,6 @@
 
 package com.roomreservation.service;
 
-import com.roomreservation.RoomReservation;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import javax.xml.namespace.QName;
@@ -70,19 +68,19 @@ public class RoomReservationImplService
      *     returns RoomReservation
      */
     @WebEndpoint(name = "RoomReservationImplPort")
-    public com.roomreservation.RoomReservation getRoomReservationImplPort() {
-        return super.getPort(new QName("http://roomreservation.com/", "RoomReservationImplPort"), com.roomreservation.RoomReservation.class);
+    public RoomReservation getRoomReservationImplPort() {
+        return super.getPort(new QName("http://roomreservation.com/", "RoomReservationImplPort"), RoomReservation.class);
     }
 
     /**
      * 
      * @param features
-     *     A list of {@link WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
+     *     A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
      * @return
      *     returns RoomReservation
      */
     @WebEndpoint(name = "RoomReservationImplPort")
-    public com.roomreservation.RoomReservation getRoomReservationImplPort(WebServiceFeature... features) {
+    public RoomReservation getRoomReservationImplPort(WebServiceFeature... features) {
         return super.getPort(new QName("http://roomreservation.com/", "RoomReservationImplPort"), RoomReservation.class, features);
     }
 
